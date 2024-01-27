@@ -4,6 +4,7 @@ import Image from "next/image";
 import React from "react";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
+import getCroppedImageUrl from '../services/image-url';
 
 interface Props {
     game: Game;
@@ -11,7 +12,7 @@ interface Props {
 
 const GameCard = ({ game }: Props) => {
     const myLoader = () => {
-        return game.background_image;
+        return getCroppedImageUrl(game.background_image);
     };
     return (
         <Card style={{ maxWidth: 400 }}>
@@ -20,7 +21,7 @@ const GameCard = ({ game }: Props) => {
                     <Image
                         objectFit='contain'
                         loader={myLoader}
-                        src={game.background_image}
+                        src={getCroppedImageUrl(game.background_image)}
                         alt=''
                         width={"300"}
                         height={"300"}
