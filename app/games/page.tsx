@@ -2,7 +2,7 @@ import { Box, Container, Grid } from "@radix-ui/themes";
 import React from "react";
 import GameGrid from "./GameGrid";
 import delay from "delay";
-import GenreList from "@/components/GenreList";
+import GenreList from "@/app/games/GenreList";
 
 const GameListPage = async () => {
     // await delay(2000);
