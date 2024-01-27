@@ -13,7 +13,7 @@ const GameGrid = () => {
     return (
         <>
             {error && <Text>{error}</Text>}
-            <Grid columns={{ initial: "1", sm: "2", md: "3" }} gap={"2"}>
+            <Grid columns={{ initial: "1", sm: "2", md: "3" }} gap={"2"} p={'2'}>
                 {isLoading &&
                     skeletons.map((skeleton) => (
                         <GameCardSkeleton key={skeleton} />

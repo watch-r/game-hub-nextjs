@@ -11,16 +11,12 @@ interface Props {
 }
 
 const GameCard = ({ game }: Props) => {
-    const myLoader = () => {
-        return getCroppedImageUrl(game.background_image);
-    };
     return (
         <Card style={{ maxWidth: 400 }}>
             <Flex direction={"column-reverse"} gap={"2"} justify={"between"}>
                 <Flex direction={"column"} align={"center"}>
                     <Image
                         objectFit='contain'
-                        loader={myLoader}
                         src={getCroppedImageUrl(game.background_image)}
                         alt=''
                         width={"300"}
