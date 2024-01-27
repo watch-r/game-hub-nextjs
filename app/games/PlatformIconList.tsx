@@ -26,12 +26,12 @@ const PlatformIconList = ({ platforms }: { platforms: Platform[] }) => {
         android: FaAndroid,
     };
     return (
-        <Flex direction={"row"} gap={"2"} p={'2'}>
+        <Flex direction={"row"} gap={"2"} p={"2"}>
             {platforms.map((platform) => {
                 const IconComponent = iconsMap[platform.slug];
                 return (
                     <Box key={platform.slug}>
-                        <IconComponent color="grey"/>
+                        <IconComponent color='grey' />
                     </Box>
                 );
             })}

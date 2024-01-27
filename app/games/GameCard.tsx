@@ -4,7 +4,7 @@ import Image from "next/image";
 import React from "react";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
-import getCroppedImageUrl from '../services/image-url';
+import getCroppedImageUrl from "../../services/image-url";
 
 interface Props {
     game: Game;
@@ -27,7 +27,7 @@ const GameCard = ({ game }: Props) => {
                         height={"300"}
                         className='rounded-md'
                     />
-                    <Heading size={"5"} weight={"medium"} className="p-3">
+                    <Heading size={"5"} weight={"medium"} className='p-3'>
                         {game.name}
                     </Heading>
                 </Flex>
