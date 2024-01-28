@@ -9,8 +9,8 @@ const GameGridSkeleton = () => {
     return (
         <Grid columns={{ initial: "1", sm: "2", md: "3" }} gap={"2"}>
             {skeletons.map((skeleton) => (
-                    <GameCardSkeleton key={skeleton} />
-                ))}
+                <GameCardSkeleton key={skeleton} />
+            ))}
         </Grid>
     );
 };

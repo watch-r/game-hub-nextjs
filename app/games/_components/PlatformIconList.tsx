@@ -1,4 +1,3 @@
-import { Platform } from "@/hooks/useGames";
 import { Box, Flex } from "@radix-ui/themes";
 import {
     FaAndroid,
@@ -12,6 +11,7 @@ import {
 import { IconType } from "react-icons/lib";
 import { MdPhoneIphone } from "react-icons/md";
 import { SiNintendogamecube } from "react-icons/si";
+import { Platform } from "./GameGrid";
 
 const PlatformIconList = ({ platforms }: { platforms: Platform[] }) => {
     const iconsMap: { [key: string]: IconType } = {
@@ -31,7 +31,7 @@ const PlatformIconList = ({ platforms }: { platforms: Platform[] }) => {
                 const IconComponent = iconsMap[platform.slug];
                 return (
                     <Box key={platform.slug}>
-                        <IconComponent color='grey' />
+                        <IconComponent color="grey" />
                     </Box>
                 );
             })}

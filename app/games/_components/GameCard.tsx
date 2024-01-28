@@ -1,10 +1,10 @@
-import { Game } from "@/hooks/useGames";
 import { Card, Flex, Heading, Text } from "@radix-ui/themes";
 import Image from "next/image";
 import React from "react";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
-import getCroppedImageUrl from "../../services/image-url";
+import getCroppedImageUrl from "../../../components/image-url";
+import { Game } from "./GameGrid";
 
 interface Props {
     game: Game;
@@ -16,14 +16,13 @@ const GameCard = ({ game }: Props) => {
             <Flex direction={"column-reverse"} gap={"2"} justify={"between"}>
                 <Flex direction={"column"} align={"center"}>
                     <Image
-                        objectFit='contain'
                         src={getCroppedImageUrl(game.background_image)}
-                        alt=''
+                        alt=""
                         width={"300"}
                         height={"300"}
-                        className='rounded-md'
+                        className="rounded-md"
                     />
-                    <Heading size={"5"} weight={"medium"} className='p-3'>
+                    <Heading size={"5"} weight={"medium"} className="p-3">
                         {game.name}
                     </Heading>
                 </Flex>
