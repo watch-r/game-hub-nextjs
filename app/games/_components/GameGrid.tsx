@@ -1,6 +1,6 @@
+import { fetchData } from "@/app/api/FetchData";
 import GameCard from "@/app/games/_components/GameCard";
 import { Grid } from "@radix-ui/themes";
-
 
 export interface Game {
     id: number;
@@ -16,25 +16,12 @@ export interface Platform {
 }
 
 const GameGrid = async () => {
-    const res = await fetch(
-        `${process.env.RAWG_API_BASE_URL}/games?key=${process.env.RAWG_API_KEY}`,
-        {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        }
-    );
-    const { results } = await res.json();
+    const results = await fetchData("games");
 
     return (
         <>
             {/* {error && <Text>{error}</Text>} */}
-            <Grid
-                columns={{ initial: "1", sm: "2", md: "3" }}
-                gap={"2"}
-                p={"2"}
-            >
+            <Grid columns={{ initial: "1", sm: "2", md: "3" }} gap={"2"}>
                 {results.map((game: Game) => (
                     <GameCard key={game.id} game={game} />
                 ))}

@@ -18,6 +18,7 @@ const GameCard = ({ game }: {game:Game}) => {
                         width={"300"}
                         height={"300"}
                         className="rounded-md"
+                        priority
                     />
                     <Heading size={"5"} weight={"medium"} className="p-3">
                         {game.name}
