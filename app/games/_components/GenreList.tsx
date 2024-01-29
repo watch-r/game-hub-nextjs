@@ -4,7 +4,7 @@ import getCroppedImageUrl from "../../../components/image-url";
 export interface Genre {
     id: number;
     name: string;
-    slug: string;
+    slug: string; 
     games_count: number;
     image_background: string;
 }

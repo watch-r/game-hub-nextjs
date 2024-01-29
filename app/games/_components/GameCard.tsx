@@ -6,11 +6,8 @@ import CriticScore from "./CriticScore";
 import getCroppedImageUrl from "../../../components/image-url";
 import { Game } from "./GameGrid";
 
-interface Props {
-    game: Game;
-}
 
-const GameCard = ({ game }: Props) => {
+const GameCard = ({ game }: {game:Game}) => {
     return (
         <Card style={{ maxWidth: 400 }}>
             <Flex direction={"column-reverse"} gap={"2"} justify={"between"}>

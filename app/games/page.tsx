@@ -5,6 +5,7 @@ import delay from "delay";
 import GenreList from "@/app/games/_components/GenreList";
 
 const GameListPage = async () => {
+    // await delay(2000); // Simulate loading time. Remove in production!
     return (
         <Container>
             <Grid columns={{ initial: "1", sm: "7" }} gap={"3"}>
