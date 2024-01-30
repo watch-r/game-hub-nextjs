@@ -1,6 +1,7 @@
-import { fetchApi, fetchData } from "@/app/api/FetchData";
+import { fetchApi, fetchData, fetchGameswithPages } from "@/app/api/FetchData";
 import GameCard from "@/app/games/_components/GameCard";
 import { Grid } from "@radix-ui/themes";
+import Pagination from "./Pagination";
 
 export interface Game {
     id: number;
@@ -17,11 +18,16 @@ export interface Platform {
 interface Props {
     platform: string;
     genre: string;
+    pagesss: string;
 }
 
-const GameGrid = async ({ platform, genre }: Props) => {
+const GameGrid = async ({ pagesss, platform, genre }: Props) => {
     // console.log(genre);
-    const results = await fetchApi("games?", platform, genre);
+    const pageSize = 9;
+    const page = parseInt(pagesss) || 1;
+    const {count , results} = await fetchApi("games?",page.toString(),pageSize.toString(), platform, genre);
+    // const {count , results} = await fetchGameswithPages('games?',page.toString(),pageSize.toString()); //page, pagesize
+
     return (
         <>
             {/* {error && <Text>{error}</Text>} */}
@@ -30,6 +36,11 @@ const GameGrid = async ({ platform, genre }: Props) => {
                     <GameCard key={game.id} game={game} />
                 ))}
             </Grid>
+            <Pagination
+                itemCount={count}
+                pageSize={pageSize}
+                currentpage={page}
+            />
         </>
     );
 };

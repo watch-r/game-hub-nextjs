@@ -1,11 +1,11 @@
 "use client";
-// import { Select } from "@radix-ui/themes";
-import React, { useState } from "react";
+import { Select } from "@radix-ui/themes";
+import React, { useState, useEffect } from "react";
 import { Platform } from "./GameGrid";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import {
-    Select,
+    // Select,
     SelectContent,
     SelectGroup,
     SelectItem,
@@ -14,6 +14,8 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 
+// const searchParams = useSearchParams();
+
 type MyPageProps = {
     platforms: Platform[];
 };
@@ -21,60 +23,61 @@ type MyPageProps = {
 const PlatformGameFilterList = ({ platforms }: MyPageProps) => {
     const router = useRouter();
     const searchParams = useSearchParams();
-    console.log("hello world:  " + searchParams.get("platform"));
-
     return (
-        <Select
-            defaultValue={searchParams.get("platform")?.toString() || "all"}
+        <Select.Root
+            defaultValue={searchParams.get("platform") || "all"}
+            size={"3"}
             onValueChange={(p) => {
                 const params = new URLSearchParams();
                 if (p !== "all") params.append("platform", p);
                 if (searchParams.get("genres"))
                     params.append("genres", searchParams.get("genres")!);
-                // const query = p !== "all" ? `?platform=${p}` : "";
                 const query = params.size ? "?" + params.toString() : "";
                 router.push("/games" + query);
             }}
         >
-            <SelectTrigger className="w-[180px] border-full">
-                <SelectValue placeholder="Select a Platform" />
-            </SelectTrigger>
-            <SelectContent>
-                <SelectItem value={"all"}>All</SelectItem>
-                <SelectGroup>
-                    <SelectLabel>---Platforms:---</SelectLabel>
+            <Select.Trigger placeholder="Choose" />
+            <Select.Content position="popper">
+                <Select.Group>
+                    <Select.Label>---Platforms:---</Select.Label>
+                    <Select.Item value={"all"}>All</Select.Item>
                     {platforms.map((p: Platform) => (
-                        <SelectItem key={p.id} value={p.id}>
+                        <Select.Item key={p.slug} value={(p.id).toString()}>
                             {p.name}
-                        </SelectItem>
+                        </Select.Item>
                     ))}
-                </SelectGroup>
-            </SelectContent>
-        </Select>
+                </Select.Group>
+            </Select.Content>
+        </Select.Root>
     );
 };
 
 export default PlatformGameFilterList;
 
-// <Select.Root
-//     size={"3"}
+// <Select
+//     defaultValue={searchParams.get("platform") || "all"}
 //     onValueChange={(p) => {
-//         const query = p !== "all" ? `?platform=${p}` : "";
+//         const params = new URLSearchParams();
+//         if (p !== "all") params.append("platform", p);
+//         if (searchParams.get("genres"))
+//             params.append("genres", searchParams.get("genres")!);
+//         // const query = p !== "all" ? `?platform=${p}` : "";
+//         const query = params.size ? "?" + params.toString() : "";
 //         router.push("/games" + query);
 //     }}
 // >
-//     <Select.Trigger placeholder="Choose" />
-//     <Select.Content position="popper">
-//         <Select.Group>
-//             <Select.Label>Platforms:</Select.Label>
-//             <Select.Item value={"all"}>All</Select.Item>
+//     <SelectTrigger className="w-[180px] border-full">
+//         <SelectValue placeholder="Select a Platform" />
+//     </SelectTrigger>
+//     <SelectContent>
+//         <SelectItem value={"all"}>All</SelectItem>
+//         <SelectGroup>
+//             <SelectLabel>---Platforms:---</SelectLabel>
 //             {platforms.map((p: Platform) => (
-//                 <Select.Item key={p.id} value={p.slug}>
+//                 <SelectItem key={p.id} value={(p.id).toString()}>
 //                     {p.name}
-//                 </Select.Item>
+//                 </SelectItem>
 //             ))}
-//         </Select.Group>
-//     </Select.Content>
-// </Select.Root>
-{
-}
+//         </SelectGroup>
+//     </SelectContent>
+// </Select>

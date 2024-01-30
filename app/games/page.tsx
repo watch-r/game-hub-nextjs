@@ -4,7 +4,7 @@ import PlatformGameFilter from "./_components/PlatformGameFilter";
 import Genre from "./_components/Genre";
 
 export interface searchProps {
-    searchParams: { platform: string; genres: string };
+    searchParams: { platform: string; genres: string, page:string };
 }
 
 const GameListPage = async ({ searchParams }: searchProps) => {
@@ -16,11 +16,10 @@ const GameListPage = async ({ searchParams }: searchProps) => {
                 <Box className=" hidden md:block md:col-span-2 p-3">
                     <Genre  />
                 </Box>
-
                 <Box className="md:col-span-5" p={"3"}>
                     <Flex gap={"2"} p={"2"} direction={"column"}>
                         <PlatformGameFilter />
-                        <GameGrid platform={searchParams.platform} genre={searchParams.genres}/>
+                        <GameGrid platform={searchParams.platform} genre={searchParams.genres} pagesss={searchParams.page}/>
                     </Flex>
                 </Box>
             </Grid>
