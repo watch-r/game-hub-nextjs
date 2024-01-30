@@ -14,10 +14,20 @@ export interface Platform {
     name: string;
     slug: string;
 }
+interface Props {
+    platform: string;
+}
 
-const GameGrid = async () => {
-    const results = await fetchData("games");
+const GameGrid = async ({ platform }: Props) => {
+    
+    let results;
+    if (platform !== undefined) {
+        results = await fetchData("games?platforms=" + platform + "&");
+    } else {
+        results = await fetchData("games?");
+    }
 
+    // console.log(platform)
     return (
         <>
             {/* {error && <Text>{error}</Text>} */}

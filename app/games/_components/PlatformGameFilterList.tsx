@@ -1,6 +1,6 @@
 "use client";
 // import { Select } from "@radix-ui/themes";
-import React from "react";
+import React, { useState } from "react";
 import { Platform } from "./GameGrid";
 import { useRouter } from "next/navigation";
 
@@ -20,21 +20,27 @@ type MyPageProps = {
 
 const PlatformGameFilterList = ({ platforms }: MyPageProps) => {
     const router = useRouter();
+
     return (
         <Select
+            defaultValue={"all"}
             onValueChange={(p) => {
-                const query = p ? `?platform=${p}` : "";
+                const query = p !== "all" ? `?platform=${p}` : "";
                 router.push("/games" + query);
+                router.refresh();
             }}
         >
             <SelectTrigger className="w-[180px] border-full">
                 <SelectValue placeholder="Select a Platform" />
             </SelectTrigger>
             <SelectContent>
+                <SelectItem value={"all"}>All</SelectItem>
                 <SelectGroup>
-                    <SelectLabel>Platforms:</SelectLabel>
+                    <SelectLabel>---Platforms:---</SelectLabel>
+                    {/* @ts-ignore */}
+
                     {platforms.map((p: Platform) => (
-                        <SelectItem key={p.id} value={p.slug}>
+                        <SelectItem key={p.id} value={p.id}>
                             {p.name}
                         </SelectItem>
                     ))}
@@ -48,15 +54,16 @@ export default PlatformGameFilterList;
 
 // <Select.Root
 //     size={"3"}
-// onValueChange={(p) => {
-//     const query = p ? `?platform=${p}` : "";
-//     router.push("/games" + query);
-// }}
+//     onValueChange={(p) => {
+//         const query = p !== "all" ? `?platform=${p}` : "";
+//         router.push("/games" + query);
+//     }}
 // >
 //     <Select.Trigger placeholder="Choose" />
 //     <Select.Content position="popper">
 //         <Select.Group>
 //             <Select.Label>Platforms:</Select.Label>
+//             <Select.Item value={"all"}>All</Select.Item>
 //             {platforms.map((p: Platform) => (
 //                 <Select.Item key={p.id} value={p.slug}>
 //                     {p.name}
@@ -65,3 +72,5 @@ export default PlatformGameFilterList;
 //         </Select.Group>
 //     </Select.Content>
 // </Select.Root>
+{
+}

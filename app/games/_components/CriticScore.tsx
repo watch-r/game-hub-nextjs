@@ -1,6 +1,7 @@
 import { Badge } from "@radix-ui/themes";
 
 const CriticScore = ({ score }: { score: number }) => {
+
     const color =
         score > 90
             ? "green"
@@ -13,7 +14,7 @@ const CriticScore = ({ score }: { score: number }) => {
             : "cyan";
     return (
         <Badge variant='surface' color={color} size={"1"}>
-            {score}
+            {score ||'N/S'}
         </Badge>
     );
 };

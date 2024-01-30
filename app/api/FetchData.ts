@@ -1,6 +1,6 @@
-export async function fetchData (item:string){
+export async function fetchData (data:string){
     const res = await fetch(
-        `${process.env.RAWG_API_BASE_URL}/${item}?key=${process.env.RAWG_API_KEY}`,
+        `${process.env.RAWG_API_BASE_URL}/${data}key=${process.env.RAWG_API_KEY}`,
         {
             method: "GET",
             headers: {

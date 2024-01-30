@@ -27,7 +27,7 @@ const PlatformIconList = ({ platforms }: { platforms: Platform[] }) => {
     };
     return (
         <Flex direction={"row"} gap={"2"} p={"2"}>
-            {platforms.map((platform) => {
+            {platforms.filter(platform => iconsMap[platform.slug]).map((platform) => {
                 const IconComponent = iconsMap[platform.slug];
                 return (
                     <Box key={platform.slug}>
