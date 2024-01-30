@@ -2,9 +2,9 @@ import { fetchData } from "@/app/api/FetchData";
 import PlatformGameFilterList from "./PlatformGameFilterList";
 
 const PlatformGameFilter = async () => {
-    const platforms = await fetchData("platforms?");
+    const {results} = await fetchData("platforms?");
     return (
-        <PlatformGameFilterList platforms={platforms}/>
+        <PlatformGameFilterList platforms={results}/>
     );
 };
 export default PlatformGameFilter;

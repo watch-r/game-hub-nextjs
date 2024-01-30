@@ -1,45 +1,94 @@
-import { Avatar, Badge, Container, Flex, Text } from "@radix-ui/themes";
+"use client";
+import { Button } from "@/components/ui/button";
+import { ActivityLogIcon } from "@radix-ui/react-icons";
+import { Avatar, Badge, Box, Flex, Section } from "@radix-ui/themes";
+import { useRouter, useSearchParams } from "next/navigation";
 import getCroppedImageUrl from "../../../components/image-url";
 
 export interface Genre {
     id: number;
     name: string;
-    slug: string; 
+    slug: string;
     games_count: number;
     image_background: string;
 }
+type MyPageProps = {
+    genres: Genre[];
+    count: number;
+};
 
-const GenreList = async () => {
-    const res = await fetch(
-        `${process.env.RAWG_API_BASE_URL}/genres?key=${process.env.RAWG_API_KEY}`,
-        {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        }
-    );
-    const { results } = await res.json();
+const GenreList = ({ genres, count }: MyPageProps) => {
+    const router = useRouter();
+    const searchParams = useSearchParams();
     return (
-        <Container>
-            <ul className="overflow-auto">
-                {results.map((genre: Genre) => (
-                    <li key={genre.id} className="p-3 ">
-                        <Flex align={"center"} gap={"2"}>
+        <div>
+            <Section className="overflow-auto">
+                <Flex align={"center"} gap={"1"} p={"1"}>
+                    <Avatar
+                        fallback={
+                            <Box width="4" height="4">
+                                <ActivityLogIcon />
+                            </Box>
+                        }
+                        size="1"
+                        alt="For resetting the Genre"
+                        radius="medium"
+                    />
+                    <Button
+                        onClick={() => {
+                            const params = new URLSearchParams();
+                            if (searchParams.get("platform"))
+                                params.append(
+                                    "platform",
+                                    searchParams.get("platform")!
+                                );
+                            const query = params.size
+                                ? "?" + params.toString()
+                                : "";
+                            router.push("/games" + query);
+                        }}
+                        variant={null}
+                    >
+                        All
+                    </Button>
+                    <Badge size={"1"}>{count}</Badge>
+                </Flex>
+                {genres.map((genre: Genre) => (
+                    <div key={genre.id}>
+                        <Flex align={"center"}>
                             <Avatar
                                 fallback="?"
-                                size="2"
+                                size="1"
                                 src={getCroppedImageUrl(genre.image_background)}
                                 alt=""
-                                radius="small"
+                                radius="large"
                             />
-                            <Text className="sm:text-sm">{genre.name}</Text>
+                            <Button
+                                onClick={() => {
+                                    const params = new URLSearchParams();
+                                    if (genre.id)
+                                        params.append("genres", genre.slug);
+                                    if (searchParams.get("platform"))
+                                        params.append(
+                                            "platform",
+                                            searchParams.get("platform")!
+                                        );
+                                    const query = params.size
+                                        ? "?" + params.toString()
+                                        : "";
+                                    router.push("/games" + query);
+                                }}
+                                variant={null}
+                                className="sm:text-sm"
+                            >
+                                {genre.name}
+                            </Button>
                             <Badge size={"1"}>{genre.games_count}</Badge>
                         </Flex>
-                    </li>
+                    </div>
                 ))}
-            </ul>
-        </Container>
+            </Section>
+        </div>
     );
 };
 

@@ -1,4 +1,4 @@
-import { fetchData } from "@/app/api/FetchData";
+import { fetchApi, fetchData } from "@/app/api/FetchData";
 import GameCard from "@/app/games/_components/GameCard";
 import { Grid } from "@radix-ui/themes";
 
@@ -16,18 +16,12 @@ export interface Platform {
 }
 interface Props {
     platform: string;
+    genre: string;
 }
 
-const GameGrid = async ({ platform }: Props) => {
-    
-    let results;
-    if (platform !== undefined) {
-        results = await fetchData("games?platforms=" + platform + "&");
-    } else {
-        results = await fetchData("games?");
-    }
-
-    // console.log(platform)
+const GameGrid = async ({ platform, genre }: Props) => {
+    // console.log(genre);
+    const results = await fetchApi("games?", platform, genre);
     return (
         <>
             {/* {error && <Text>{error}</Text>} */}

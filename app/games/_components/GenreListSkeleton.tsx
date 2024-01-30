@@ -11,7 +11,7 @@ const GenreListSkeleton = () => {
         <Container>
             <ul className="overflow-auto">
                 {results.map((genre) => (
-                    <li key={genre} className="p-3  ">
+                    <li key={genre} className="py-2">
                         <Flex align={"center"} gap={"5"}>
                             <Avatar
                                 fallback="?"

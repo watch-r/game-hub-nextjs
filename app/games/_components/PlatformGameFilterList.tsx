@@ -2,7 +2,7 @@
 // import { Select } from "@radix-ui/themes";
 import React, { useState } from "react";
 import { Platform } from "./GameGrid";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import {
     Select,
@@ -20,14 +20,20 @@ type MyPageProps = {
 
 const PlatformGameFilterList = ({ platforms }: MyPageProps) => {
     const router = useRouter();
+    const searchParams = useSearchParams();
+    console.log("hello world:  " + searchParams.get("platform"));
 
     return (
         <Select
-            defaultValue={"all"}
+            defaultValue={searchParams.get("platform")?.toString() || "all"}
             onValueChange={(p) => {
-                const query = p !== "all" ? `?platform=${p}` : "";
+                const params = new URLSearchParams();
+                if (p !== "all") params.append("platform", p);
+                if (searchParams.get("genres"))
+                    params.append("genres", searchParams.get("genres")!);
+                // const query = p !== "all" ? `?platform=${p}` : "";
+                const query = params.size ? "?" + params.toString() : "";
                 router.push("/games" + query);
-                router.refresh();
             }}
         >
             <SelectTrigger className="w-[180px] border-full">
@@ -37,8 +43,6 @@ const PlatformGameFilterList = ({ platforms }: MyPageProps) => {
                 <SelectItem value={"all"}>All</SelectItem>
                 <SelectGroup>
                     <SelectLabel>---Platforms:---</SelectLabel>
-                    {/* @ts-ignore */}
-
                     {platforms.map((p: Platform) => (
                         <SelectItem key={p.id} value={p.id}>
                             {p.name}
