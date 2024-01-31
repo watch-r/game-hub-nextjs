@@ -1,8 +1,9 @@
+import { Container } from '@radix-ui/themes'
 import React from 'react'
 
 const DashboardPage = () => {
   return (
-    <div>DashboardPage</div>
+    <Container>Dashboard Page will be there Soon...</Container>
   )
 }
 

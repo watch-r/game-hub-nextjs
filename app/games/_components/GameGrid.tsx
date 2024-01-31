@@ -19,13 +19,21 @@ interface Props {
     platform: string;
     genre: string;
     pagesss: string;
+    order: string;
 }
 
-const GameGrid = async ({ pagesss, platform, genre }: Props) => {
+const GameGrid = async ({ pagesss, platform, genre, order }: Props) => {
     // console.log(genre);
     const pageSize = 9;
     const page = parseInt(pagesss) || 1;
-    const {count , results} = await fetchApi("games?",page.toString(),pageSize.toString(), platform, genre);
+    const { count, results } = await fetchApi(
+        "games?",
+        page.toString(),
+        pageSize.toString(),
+        platform,
+        genre,
+        order
+    );
     // const {count , results} = await fetchGameswithPages('games?',page.toString(),pageSize.toString()); //page, pagesize
 
     return (

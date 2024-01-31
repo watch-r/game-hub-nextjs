@@ -12,7 +12,6 @@ const GenreListSkeleton = () => {
     return (
         <div>
             <SkeletonTheme baseColor={"#9c9595"} highlightColor={"#919090"}>
-                <Section className="overflow-auto">
                     <Heading size={"6"} className="border-b-2 px-1 py-3">
                         Genres
                     </Heading>
@@ -46,7 +45,6 @@ const GenreListSkeleton = () => {
                             </Flex>
                         </div>
                     ))}
-                </Section>
             </SkeletonTheme>
         </div>
     );

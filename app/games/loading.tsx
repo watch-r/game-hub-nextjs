@@ -8,7 +8,7 @@ const LoadingOfGamePage = () => {
     return (
         <Container>
             <Grid columns={{ initial: "1", sm: "7" }} gap={"3"}>
-                <Box className="hidden md:block md:col-span-2 p-3">
+                <Box className="hidden md:block md:col-span-2 p-3 py-5 overflow-auto">
                     <GenreListSkeleton />
                 </Box>
                 <Box className="md:col-span-5" p={"3"}>

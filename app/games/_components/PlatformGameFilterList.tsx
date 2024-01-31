@@ -30,6 +30,8 @@ const PlatformGameFilterList = ({ platforms }: MyPageProps) => {
                 if (p !== "all") params.append("platform", p);
                 if (searchParams.get("genres"))
                     params.append("genres", searchParams.get("genres")!);
+                if (searchParams.get("sortOrder"))
+                    params.append("sortOrder", searchParams.get("sortOrder")!);
                 const query = params.size ? "?" + params.toString() : "";
                 router.push("/games" + query);
             }}
