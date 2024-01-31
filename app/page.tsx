@@ -12,7 +12,6 @@ export default async function Home() {
                     <Button>Button radix ui check</Button>
                     <Botton>Button shadcn ui check</Botton>
                     <TestPurposesOnly />
-                    <Pagination itemCount={10} pageSize={2} currentpage={2}/>
                 </Flex>
             </Container>
         </>

@@ -6,14 +6,18 @@ import CriticScore from "./CriticScore";
 import getCroppedImageUrl from "../../../components/image-url";
 import { Game } from "./GameGrid";
 
-
-const GameCard = ({ game }: {game:Game}) => {
+const GameCard = ({ game }: { game: Game }) => {
     return (
         <Card style={{ maxWidth: 400 }}>
             <Flex direction={"column-reverse"} gap={"2"} justify={"between"}>
                 <Flex direction={"column"} align={"center"}>
                     <Image
-                        src={getCroppedImageUrl(game.background_image)}
+                        // getCroppedImageUrl(game.background_image)
+                        src={
+                            game.background_image
+                                ? getCroppedImageUrl(game.background_image)
+                                : "/stock_image.jpeg"
+                        }
                         alt=""
                         width={"300"}
                         height={"300"}
