@@ -1,5 +1,4 @@
 import { fetchData } from "@/app/api/FetchData";
-import React from "react";
 import GenreList from "./GenreList";
 
 

@@ -28,7 +28,7 @@ const GenreList = ({ genres, count }: MyPageProps) => {
                         fallback={
                             <Box width="4" height="4">
                                 <ActivityLogIcon />
-                            </Box>
+                            </Box> 
                         }
                         size="1"
                         alt="For resetting the Genre"

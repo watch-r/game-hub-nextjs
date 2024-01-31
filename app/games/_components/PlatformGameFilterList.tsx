@@ -1,8 +1,7 @@
 "use client";
 // import { Select } from "@radix-ui/themes";
-import React, { useState, useEffect } from "react";
-import { Platform } from "./GameGrid";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Platform } from "./GameGrid";
 
 import {
     Select,

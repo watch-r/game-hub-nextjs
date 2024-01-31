@@ -1,10 +1,9 @@
-import { Card, Flex, Heading, Text } from "@radix-ui/themes";
+import { Card, Flex, Heading } from "@radix-ui/themes";
 import Image from "next/image";
-import React from "react";
-import PlatformIconList from "./PlatformIconList";
-import CriticScore from "./CriticScore";
 import getCroppedImageUrl from "../../../components/image-url";
+import CriticScore from "./CriticScore";
 import { Game } from "./GameGrid";
+import PlatformIconList from "./PlatformIconList";
 
 const GameCard = ({ game }: { game: Game }) => {
     return (

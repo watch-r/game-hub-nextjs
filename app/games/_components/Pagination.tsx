@@ -5,9 +5,8 @@ import {
     DoubleArrowLeftIcon,
     DoubleArrowRightIcon,
 } from "@radix-ui/react-icons";
-import { Flex, Text, Button } from "@radix-ui/themes";
+import { Button, Flex, Text } from "@radix-ui/themes";
 import { useRouter, useSearchParams } from "next/navigation";
-import React from "react";
 
 interface Props {
     itemCount: number;
