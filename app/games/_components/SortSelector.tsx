@@ -9,8 +9,6 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { useRouter, useSearchParams } from "next/navigation";
-import React from "react";
-import { Platform } from "./GameGrid";
 
 const SortSelector = () => {
     const router = useRouter();
@@ -42,7 +40,7 @@ const SortSelector = () => {
         },
     ];
     return (
-        <Select
+        <Select 
             defaultValue={searchParams.get("sortOrder") || "all"}
             onValueChange={(order) => {
                 const params = new URLSearchParams();

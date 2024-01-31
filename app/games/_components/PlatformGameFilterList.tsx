@@ -13,8 +13,6 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 
-// const searchParams = useSearchParams();
-
 type MyPageProps = {
     platforms: Platform[];
 };
@@ -23,7 +21,7 @@ const PlatformGameFilterList = ({ platforms }: MyPageProps) => {
     const router = useRouter();
     const searchParams = useSearchParams();
     return (
-        <Select
+        <Select 
             defaultValue={searchParams.get("platform") || "all"}
             onValueChange={(p) => {
                 const params = new URLSearchParams();
