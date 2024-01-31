@@ -14,9 +14,7 @@ const GameListPage = async ({ searchParams }: searchProps) => {
         <Container>
             <Grid columns={{ initial: "1", sm: "7" }} gap={"3"}>
                 <Box className=" hidden md:block md:col-span-2 p-3">
-                    <Heading size={"6"} className="border-b-2 px-1 py-3">
-                        Genres
-                    </Heading>
+                    
                     <Genre />
                 </Box>
                 <Box className="md:col-span-5" p={"3"}>

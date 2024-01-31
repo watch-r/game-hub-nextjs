@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { ActivityLogIcon } from "@radix-ui/react-icons";
-import { Avatar, Badge, Box, Container, Flex, Section } from "@radix-ui/themes";
+import { Avatar, Badge, Box, Container, Flex, Heading, Section } from "@radix-ui/themes";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -13,6 +13,9 @@ const GenreListSkeleton = () => {
         <div>
             <SkeletonTheme baseColor={"#9c9595"} highlightColor={"#919090"}>
                 <Section className="overflow-auto">
+                    <Heading size={"6"} className="border-b-2 px-1 py-3">
+                        Genres
+                    </Heading>
                     <Flex align={"center"} gap={"1"} p={"1"}>
                         <Avatar
                             fallback={

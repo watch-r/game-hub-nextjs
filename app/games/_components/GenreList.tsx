@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { ActivityLogIcon } from "@radix-ui/react-icons";
-import { Avatar, Badge, Box, Flex, Section } from "@radix-ui/themes";
+import { Avatar, Badge, Box, Flex, Heading, Section } from "@radix-ui/themes";
 import { useRouter, useSearchParams } from "next/navigation";
 import getCroppedImageUrl from "../../../components/image-url";
 
@@ -23,12 +23,15 @@ const GenreList = ({ genres, count }: MyPageProps) => {
     return (
         <div>
             <Section className="overflow-auto">
+                <Heading size={"6"} className="border-b-2 px-1 py-3">
+                    Genres
+                </Heading>
                 <Flex align={"center"} gap={"1"} p={"1"}>
                     <Avatar
                         fallback={
                             <Box width="4" height="4">
                                 <ActivityLogIcon />
-                            </Box> 
+                            </Box>
                         }
                         size="1"
                         alt="For resetting the Genre"
