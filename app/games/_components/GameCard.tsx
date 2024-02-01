@@ -3,7 +3,7 @@ import Image from "next/image";
 import getCroppedImageUrl from "../../../components/image-url";
 import CriticScore from "./CriticScore";
 import { Game } from "./GameGrid";
-import PlatformIconList from "./PlatformIconList";
+import PlatformIconList from "../../../components/PlatformIconList";
 import Link from "next/link";
 
 const GameCard = ({ game }: { game: Game }) => {

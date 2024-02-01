@@ -4,6 +4,7 @@ import { ActivityLogIcon } from "@radix-ui/react-icons";
 import { Avatar, Badge, Box, Flex, Heading, Section } from "@radix-ui/themes";
 import { useRouter, useSearchParams } from "next/navigation";
 import getCroppedImageUrl from "../../../components/image-url";
+import { useState } from "react";
 
 export interface Genre {
     id: number;
@@ -15,11 +16,13 @@ export interface Genre {
 type MyPageProps = {
     genres: Genre[];
     count: number;
+    selectedGenre: string;
 };
 
-const GenreList = ({ genres, count }: MyPageProps) => {
+const GenreList = ({ genres, count, selectedGenre }: MyPageProps) => {
     const router = useRouter();
     const searchParams = useSearchParams();
+    const [selected, setSelected] = useState(false);
     return (
         <>
             <Heading size={"6"} className="border-b-2 px-1 py-3">
@@ -50,6 +53,10 @@ const GenreList = ({ genres, count }: MyPageProps) => {
                         router.push("/games" + query);
                     }}
                     variant={null}
+                    style={{
+                        fontWeight:
+                            selectedGenre === undefined ? "bolder" : "inherit",
+                    }}
                 >
                     All
                 </Button>
@@ -87,6 +94,12 @@ const GenreList = ({ genres, count }: MyPageProps) => {
                             }}
                             variant={null}
                             className="sm:text-sm"
+                            style={{
+                                fontWeight:
+                                    selectedGenre === genre.slug
+                                        ? "bolder"
+                                        : "inherit",
+                            }}
                         >
                             {genre.name}
                         </Button>

@@ -3,7 +3,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 import type { Metadata } from "next";
-import { BioRhyme as MainFont } from "next/font/google";
+import { Albert_Sans as MainFont } from "next/font/google";
 import "./globals.css";
 import "./theme-config.css";
 

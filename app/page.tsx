@@ -3,6 +3,7 @@ import { Button, Container, Flex } from "@radix-ui/themes";
 // import TestPurposesOnly from "./test";
 import Pagination from "./games/_components/Pagination";
 import SortSelector from "./games/_components/SortSelector";
+import PlatformGameFilterList from "./games/_components/PlatformGameFilterList";
 
 export default async function Home() {
     return (

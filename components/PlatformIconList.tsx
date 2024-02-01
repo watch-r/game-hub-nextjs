@@ -11,7 +11,7 @@ import {
 import { IconType } from "react-icons/lib";
 import { MdPhoneIphone } from "react-icons/md";
 import { SiNintendogamecube } from "react-icons/si";
-import { Platform } from "./GameGrid";
+import { Platform } from "../app/games/_components/GameGrid";
 
 const PlatformIconList = ({ platforms }: { platforms: Platform[] }) => {
     const iconsMap: { [key: string]: IconType } = {
@@ -27,14 +27,16 @@ const PlatformIconList = ({ platforms }: { platforms: Platform[] }) => {
     };
     return (
         <Flex direction={"row"} gap={"2"} p={"2"}>
-            {platforms.filter(platform => iconsMap[platform.slug]).map((platform) => {
-                const IconComponent = iconsMap[platform.slug];
-                return (
-                    <Box key={platform.slug}>
-                        <IconComponent color="grey" />
-                    </Box>
-                );
-            })}
+            {platforms
+                .filter((platform) => iconsMap[platform.slug])
+                .map((platform) => {
+                    const IconComponent = iconsMap[platform.slug];
+                    return (
+                        <Box key={platform.slug}>
+                            <IconComponent color="grey" />
+                        </Box>
+                    );
+                })}
         </Flex>
     );
 };
