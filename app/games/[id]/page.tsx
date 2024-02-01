@@ -1,5 +1,6 @@
 import { fetchGameById } from "@/app/api/FetchData";
 import { Container, Flex, Heading, Text } from "@radix-ui/themes";
+import delay from "delay";
 import Image from "next/image";
 import React from "react";
 
@@ -26,25 +27,26 @@ interface Game {
 }
 
 const GameDetailsPage = async ({ params }: Props) => {
+    await delay(2000);
     const game: Game = await fetchGameById(params.id);
     return (
         <Container>
             <Flex direction={"column"}>
                 <Heading size={"6"}>{game.name}</Heading>
                 <Text
-                    className='text-sm font-light'
+                    className="text-sm font-light"
                     dangerouslySetInnerHTML={{ __html: game.description }}
                 />
                 {game.rating}
                 <Image
                     src={game.background_image}
-                    alt='Image of ...'
+                    alt="Image of ..."
                     width={"300"}
                     height={"300"}
                 />
                 <Image
                     src={game.background_image_additional}
-                    alt='Image of ...'
+                    alt="Image of ..."
                     width={"300"}
                     height={"300"}
                 ></Image>

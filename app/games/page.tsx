@@ -16,7 +16,7 @@ export interface searchProps {
 }
 
 const GameListPage = async ({ searchParams }: searchProps) => {
-    await delay(2000); // Simulate loading time. Remove in production!
+    await delay(3000); // Simulate loading time. Remove in production!
     // console.log(searchParams.sortOrder); 
     // console.log(searchParams.genres); 
 
