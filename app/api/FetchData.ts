@@ -36,9 +36,9 @@ export async function fetchApi(
 }
 //
 // just games
-export async function fetchItems(data: string) {
+export async function fetchGameById(data: string) {
     const res = await fetch(
-        `${process.env.RAWG_API_BASE_URL}/${data}key=${process.env.RAWG_API_KEY}&page_size=9&page=2`,
+        `${process.env.RAWG_API_BASE_URL}/games/${data}?key=${process.env.RAWG_API_KEY}`,
         {
             method: "GET",
             headers: {
@@ -47,8 +47,8 @@ export async function fetchItems(data: string) {
             },
         }
     );
-    const { count, results } = await res.json();
-    return { count, results };
+    const game = await res.json();
+    return game;
 }
 export async function fetchGameswithPages(
     data: string,
