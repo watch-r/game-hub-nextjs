@@ -38,7 +38,6 @@ const GameGrid = async ({ pagesss, platform, genre, order }: Props) => {
 
     return (
         <>
-            {/* {error && <Text>{error}</Text>} */}
             <Flex gap={"3"} direction={"column"} align={'center'}>
                 <Grid columns={{ initial: "1", sm: "2", md: "3" }} gap={"2"}>
                     {results.map((game: Game) => (

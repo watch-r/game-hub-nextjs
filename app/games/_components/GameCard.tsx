@@ -25,7 +25,7 @@ const GameCard = ({ game }: { game: Game }) => {
                             }
                             alt=""
                             width={"300"}
-                            height={"300"}
+                            height={"200"}
                             className="rounded-md"
                             priority
                         />

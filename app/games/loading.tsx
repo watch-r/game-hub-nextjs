@@ -1,8 +1,7 @@
 import { Box, Container, Flex, Grid, Heading } from "@radix-ui/themes";
 import GameGridSkeleton from "./_components/GameGridSkeleton";
 import GenreListSkeleton from "./_components/GenreListSkeleton";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const LoadingOfGamePage = () => {
     return (
@@ -16,7 +15,10 @@ const LoadingOfGamePage = () => {
                         <Heading size={"6"} className="border-b-2 px-1 py-3">
                             Games
                         </Heading>
-                        <Skeleton width={170} height={40} />
+                        <Flex direction={"row"} gap={"2"}>
+                            <Skeleton className="w-44 h-9" />
+                            <Skeleton className="w-44 h-9" />{" "}
+                        </Flex>
                         <GameGridSkeleton />
                     </Flex>
                 </Box>

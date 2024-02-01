@@ -6,7 +6,6 @@ import delay from "delay";
 import SortSelector from "./_components/SortSelector";
 import { useSearchParams } from "next/navigation";
 export interface searchProps {
-
     searchParams: {
         platform: string;
         genres: string;
@@ -16,9 +15,9 @@ export interface searchProps {
 }
 
 const GameListPage = async ({ searchParams }: searchProps) => {
-    await delay(3000); // Simulate loading time. Remove in production!
-    // console.log(searchParams.sortOrder); 
-    // console.log(searchParams.genres); 
+    // await delay(3000); // Simulate loading time. Remove in production!
+    // console.log(searchParams.sortOrder);
+    // console.log(searchParams.genres);
 
     return (
         <Container>

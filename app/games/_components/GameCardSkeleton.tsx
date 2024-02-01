@@ -6,8 +6,10 @@ const GameCardSkeleton = () => {
         <Card style={{ maxWidth: 400 }}>
             <Flex direction={"column-reverse"} gap={"2"} justify={"between"}>
                 <Flex direction={"column"} align={"center"} gap={"2"}>
-                    <Skeleton className="h-[155px] w-[230px] rounded-xl" />
-                    <Skeleton className="h-[60px] w-[230px] rounded-xl" />
+                    {/* Image */}
+                    <Skeleton className="h-44 w-80 rounded-xl" />
+                    {/* Heading */}
+                    <Skeleton className="h-9 w-64 rounded-xl" />{" "}
                 </Flex>
                 <Flex justify={"between"}>
                     <Skeleton className="h-8 w-[150px]" />

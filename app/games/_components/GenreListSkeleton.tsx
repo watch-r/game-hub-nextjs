@@ -40,8 +40,8 @@ const GenreListSkeleton = () => {
                 <div key={genre} className="py-2">
                     <Flex align={"center"} gap={"5"}>
                         <Avatar fallback="?" size="1" alt="" radius="large" />
-                        <Skeleton className="h-7 w-20" />
-                        <Skeleton className="h-6 w-10" />
+                        <Skeleton className="h-6 w-20" />
+                        <Skeleton className="h-4 w-10" />
                     </Flex>
                 </div>
             ))}
