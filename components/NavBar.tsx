@@ -32,7 +32,6 @@ const NavLinks = () => {
     const currentPath = usePathname();
 
     const links = [
-        { label: "Dashboard", href: "/dashboard" },
         { label: "Games", href: "/games" },
     ];
     return (

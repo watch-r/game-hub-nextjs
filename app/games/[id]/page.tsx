@@ -1,10 +1,11 @@
 import { fetchGameById } from "@/app/api/FetchData";
-import { Box, Container, Flex, Grid, Heading, Text } from "@radix-ui/themes";
+import { Box, Container, Flex, Grid, Heading, Separator, Text } from "@radix-ui/themes";
 import delay from "delay";
 import Image from "next/image";
 import React from "react";
 import { Platform } from "../_components/GameGrid";
 import TopBadge from "./_components/TopBadge";
+import Descriptions from "./_components/Description";
 
 interface Props {
     params: { id: string };
@@ -43,30 +44,28 @@ const GameDetailsPage = async ({ params }: Props) => {
         <Container p={"2"}>
             <Grid columns={{ initial: "1", sm: "7" }} gap={"3"}>
                 <Box className='md:col-span-4'>
-                    <Flex direction={"column"}>
-                        <Heading size={"6"}>{game.name}</Heading>
+                    <Flex direction={"column"} gap={'3'}>
+                        <Heading size={"8"}>{game.name}</Heading>
+                        <Separator my="2" size="4" />
                         <TopBadge
                             released_at={game.released}
                             platforms={game.platforms}
                             playtime={game.playtime}
+                            score={game.metacritic}
                         />
-                        <Text
-                            dangerouslySetInnerHTML={{
-                                __html: game.description,
-                            }}
-                        />
+                        <Descriptions description={game.description} />
                         {game.rating}
                     </Flex>
                 </Box>
                 <Box className='md:col-span-3'>
                     <Image
-                        src={game.background_image}
+                        src={game.background_image?game.background_image:'/stock_image.jpeg'}
                         alt='Image of ...'
                         width={"300"}
                         height={"300"}
                     />
                     <Image
-                        src={game.background_image_additional}
+                        src={game.background_image_additional?game.background_image_additional:'/placeholder001.png'}
                         alt='Image of ...'
                         width={"300"}
                         height={"300"}

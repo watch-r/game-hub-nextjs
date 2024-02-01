@@ -31,7 +31,7 @@ const SortSelector = () => {
             label: "Release Date",
         },
         {
-            value: "-metacritic ",
+            value: "-metacritic",
             label: "Popularity",
         },
         {

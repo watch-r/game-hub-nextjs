@@ -1,7 +1,7 @@
 import { Card, Flex, Heading } from "@radix-ui/themes";
 import Image from "next/image";
 import getCroppedImageUrl from "../../../components/image-url";
-import CriticScore from "./CriticScore";
+import CriticScore from "../../../components/CriticScore";
 import { Game } from "./GameGrid";
 import PlatformIconList from "../../../components/PlatformIconList";
 import Link from "next/link";
@@ -23,13 +23,13 @@ const GameCard = ({ game }: { game: Game }) => {
                                     ? getCroppedImageUrl(game.background_image)
                                     : "/stock_image.jpeg"
                             }
-                            alt=""
+                            alt=''
                             width={"300"}
                             height={"200"}
-                            className="rounded-md"
+                            className='rounded-md'
                             priority
                         />
-                        <Heading size={"5"} weight={"medium"} className="p-3">
+                        <Heading size={"5"} weight={"medium"} className='p-3'>
                             {game.name}
                         </Heading>
                     </Flex>
