@@ -5,7 +5,6 @@ import Image from "next/image";
 import React from "react";
 import { Platform } from "../_components/GameGrid";
 import TopBadge from "./_components/TopBadge";
-import ReactMarkdown from "react-markdown";
 
 interface Props {
     params: { id: string };
@@ -43,7 +42,7 @@ const GameDetailsPage = async ({ params }: Props) => {
     return (
         <Container p={"2"}>
             <Grid columns={{ initial: "1", sm: "7" }} gap={"3"}>
-                <Box className="md:col-span-4">
+                <Box className='md:col-span-4'>
                     <Flex direction={"column"}>
                         <Heading size={"6"}>{game.name}</Heading>
                         <TopBadge
@@ -59,16 +58,16 @@ const GameDetailsPage = async ({ params }: Props) => {
                         {game.rating}
                     </Flex>
                 </Box>
-                <Box>
+                <Box className='md:col-span-3'>
                     <Image
                         src={game.background_image}
-                        alt="Image of ..."
+                        alt='Image of ...'
                         width={"300"}
                         height={"300"}
                     />
                     <Image
                         src={game.background_image_additional}
-                        alt="Image of ..."
+                        alt='Image of ...'
                         width={"300"}
                         height={"300"}
                     />

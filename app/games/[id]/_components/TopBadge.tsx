@@ -27,8 +27,8 @@ const TopBadge = ({ released_at, platforms, playtime }: Props) => {
     const iconArray = Array.from(iconSet);
     return (
         <Flex direction={"row"} gap={"3"} align={'center'}>
-            <Badge>{released_at}</Badge>
-            <Badge>AVERAGE PLAYTIME: {playtime} HOURS </Badge>
+            <Badge variant="surface"radius="full">{released_at}</Badge>
+            <Badge variant="surface" size={'1'} highContrast>AVERAGE PLAYTIME: {playtime} HOURS </Badge>
             <Flex direction={"row"} gap={"2"} p={"2"}>
                 {iconArray.map((IconComponent:any, index:number) => {
                     return (
