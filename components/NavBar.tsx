@@ -5,20 +5,22 @@ import Link from "next/link";
 import classnames from "classnames";
 import { Container, Flex, Avatar } from "@radix-ui/themes";
 import { PiGameControllerDuotone } from "react-icons/pi";
+import SearchInput from "./SearchInput";
 
 const NavBar = () => {
     return (
         <>
-            <nav className='border-b px-5 mb-5 py-3'>
+            <nav className='border-b-2 px-5 mb-1 py-3'>
                 <Container>
-                    <Flex justify={"between"}>
-                        <Flex align='center' gap='4'>
+                    <Flex gap='4' direction={"row"} justify={"between"}>
+                        <Flex align={"center"} gap={"2"}>
                             <Link href='/'>
                                 <PiGameControllerDuotone size={"2rem"} />
                             </Link>
                             <NavLinks />
+                            <SearchInput />
                         </Flex>
-                        <Flex align='center' gap='5'>
+                        <Flex align={"center"} gap={"2"}>
                             <ModeToggle />
                             <Avatar fallback='?' radius='full' />
                         </Flex>
@@ -31,9 +33,7 @@ const NavBar = () => {
 const NavLinks = () => {
     const currentPath = usePathname();
 
-    const links = [
-        { label: "Games", href: "/games" },
-    ];
+    const links = [{ label: "Games", href: "/games" }];
     return (
         <ul className='flex space-x-6'>
             {links.map((link) => (

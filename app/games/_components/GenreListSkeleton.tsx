@@ -19,29 +19,29 @@ const GenreListSkeleton = () => {
     //#e379a2
     return (
         <div>
-            <Heading size={"6"} className="border-b-2 px-1 py-3">
+            <Heading size={"6"} className='border-b-2 p-1'>
                 Genres
             </Heading>
             <Flex align={"center"} gap={"1"} p={"1"}>
                 <Avatar
                     fallback={
-                        <Box width="4" height="4">
+                        <Box width='4' height='4'>
                             <ActivityLogIcon />
                         </Box>
                     }
-                    size="1"
-                    alt="For resetting the Genre"
-                    radius="medium"
+                    size='1'
+                    alt='For resetting the Genre'
+                    radius='medium'
                 />
                 <Button variant={null}>All</Button>
-                <Skeleton className="h-7 w-[30px]" />
+                <Skeleton className='h-7 w-[30px]' />
             </Flex>
             {results.map((genre) => (
-                <div key={genre} className="py-2">
+                <div key={genre} className='py-2'>
                     <Flex align={"center"} gap={"5"}>
-                        <Avatar fallback="?" size="1" alt="" radius="large" />
-                        <Skeleton className="h-6 w-20" />
-                        <Skeleton className="h-4 w-10" />
+                        <Avatar fallback='?' size='1' alt='' radius='large' />
+                        <Skeleton className='h-6 w-20' />
+                        <Skeleton className='h-4 w-10' />
                     </Flex>
                 </div>
             ))}

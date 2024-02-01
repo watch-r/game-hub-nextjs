@@ -22,22 +22,21 @@ type MyPageProps = {
 const GenreList = ({ genres, count, selectedGenre }: MyPageProps) => {
     const router = useRouter();
     const searchParams = useSearchParams();
-    const [selected, setSelected] = useState(false);
     return (
         <>
-            <Heading size={"6"} className="border-b-2 px-1 py-3">
+            <Heading size={"6"} className='border-b-2 p-1'>
                 Genres
             </Heading>
             <Flex align={"center"} gap={"1"} p={"1"}>
                 <Avatar
                     fallback={
-                        <Box width="4" height="4">
+                        <Box width='4' height='4'>
                             <ActivityLogIcon />
                         </Box>
                     }
-                    size="1"
-                    alt="For resetting the Genre"
-                    radius="medium"
+                    size='1'
+                    alt='For resetting the Genre'
+                    radius='medium'
                 />
                 <Button
                     onClick={() => {
@@ -46,6 +45,11 @@ const GenreList = ({ genres, count, selectedGenre }: MyPageProps) => {
                             params.append(
                                 "platform",
                                 searchParams.get("platform")!
+                            );
+                        if (searchParams.get("sortOrder"))
+                            params.append(
+                                "sortOrder",
+                                searchParams.get("sortOrder")!
                             );
                         const query = params.size
                             ? "?" + params.toString()
@@ -66,11 +70,11 @@ const GenreList = ({ genres, count, selectedGenre }: MyPageProps) => {
                 <div key={genre.id}>
                     <Flex align={"center"}>
                         <Avatar
-                            fallback="?"
-                            size="1"
+                            fallback='?'
+                            size='1'
                             src={getCroppedImageUrl(genre.image_background)}
-                            alt=""
-                            radius="large"
+                            alt=''
+                            radius='large'
                         />
                         <Button
                             onClick={() => {
@@ -93,7 +97,7 @@ const GenreList = ({ genres, count, selectedGenre }: MyPageProps) => {
                                 router.push("/games" + query);
                             }}
                             variant={null}
-                            className="sm:text-sm"
+                            className='sm:text-sm'
                             style={{
                                 fontWeight:
                                     selectedGenre === genre.slug

@@ -22,12 +22,12 @@ const GameListPage = async ({ searchParams }: searchProps) => {
     return (
         <Container>
             <Grid columns={{ initial: "1", sm: "7" }} gap={"2"}>
-                <Box className=" hidden md:block md:col-span-2 p-3 py-5 overflow-auto">
+                <Box className=" hidden md:block md:col-span-2 px-3 py-3 overflow-auto">
                     <Genre selectedGenre={searchParams.genres}/>
                 </Box>
                 <Box className="md:col-span-5" px={"3"}>
                     <Flex gap={"2"} p={"2"} direction={"column"}>
-                        <Heading size={"8"} className="border-b-2 px-1 py-3">
+                        <Heading size={"8"} className="border-b-2 px-1 pb-1">
                             Games
                         </Heading>
                         <Flex direction={"row"} gap={"2"}>
