@@ -1,10 +1,10 @@
 "use client";
+import { Genre } from "@/app/lib/TypeDefinations";
 import { Button } from "@/components/ui/button";
 import { ActivityLogIcon } from "@radix-ui/react-icons";
 import { Avatar, Badge, Box, Flex, Heading } from "@radix-ui/themes";
 import { useRouter, useSearchParams } from "next/navigation";
 import getCroppedImageUrl from "../../lib/image-url";
-import { Genre } from "@/app/lib/TypeDefinations";
 
 type Genres = {
     genres: Genre[];
@@ -18,6 +18,8 @@ const GenreList = ({ genres, count, selectedGenre }: Genres) => {
 
     const handleClick = () => {
         const params = new URLSearchParams();
+        if (searchParams.get("search"))
+            params.append("search", searchParams.get("search")!);
         if (searchParams.get("platform"))
             params.append("platform", searchParams.get("platform")!);
         if (searchParams.get("sortOrder"))
@@ -29,6 +31,8 @@ const GenreList = ({ genres, count, selectedGenre }: Genres) => {
     const handleClickTwo = (genre: Genre) => {
         const params = new URLSearchParams();
         if (genre.id) params.append("genres", genre.slug);
+        if (searchParams.get("search"))
+            params.append("search", searchParams.get("search")!);
         if (searchParams.get("platform"))
             params.append("platform", searchParams.get("platform")!);
         if (searchParams.get("sortOrder"))

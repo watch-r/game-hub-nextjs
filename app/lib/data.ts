@@ -18,7 +18,8 @@ export async function fetchGamesWithParameters(
     page?: string,
     platform?: string,
     genre?: string,
-    order?: string
+    order?: string,
+    search?: string
 ) {
     let url = `${process.env.RAWG_API_BASE_URL}/games?key=${process.env.RAWG_API_KEY}&page_size=${pagesize}&`;
     if (platform) {
@@ -29,6 +30,9 @@ export async function fetchGamesWithParameters(
     }
     if (order) {
         url += "ordering=" + order + "&";
+    }
+    if (search) {
+        url += `search=${search}&`;
     }
     if (page) {
         url += `page=${page}`;

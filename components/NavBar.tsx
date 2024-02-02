@@ -1,11 +1,11 @@
 "use client";
-import { usePathname } from "next/navigation";
-import { ModeToggle } from "./ui/toggleMode";
-import Link from "next/link";
+import { Avatar, Container, Flex } from "@radix-ui/themes";
 import classnames from "classnames";
-import { Container, Flex, Avatar } from "@radix-ui/themes";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { PiGameControllerDuotone } from "react-icons/pi";
 import SearchInput from "./SearchInput";
+import { ModeToggle } from "./ui/toggleMode";
 
 const NavBar = () => {
     return (

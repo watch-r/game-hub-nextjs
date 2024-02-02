@@ -5,6 +5,7 @@ import GameGrid from "./_components/GameGrid";
 import GenreList from "./_components/GenreList";
 import PlatformGameFilterList from "./_components/PlatformGameFilterList";
 import SortSelector from "./_components/SortSelector";
+import ResetButton from "./_components/resetButton";
 
 type MySearchProps = {
     searchParams: {
@@ -12,6 +13,7 @@ type MySearchProps = {
         genres: string;
         page: string;
         sortOrder: string;
+        search: string;
     };
 };
 
@@ -39,12 +41,14 @@ const GameListPage = async ({ searchParams }: MySearchProps) => {
                         <Flex direction={"row"} gap={"2"}>
                             <PlatformGameFilterList platforms={platforms} />
                             <SortSelector />
+                            <ResetButton />
                         </Flex>
                         <GameGrid
                             platform={searchParams.platform}
                             genre={searchParams.genres}
                             pagesss={searchParams.page}
                             order={searchParams.sortOrder}
+                            search={searchParams.search}
                         />
                     </Flex>
                 </Box>

@@ -1,16 +1,7 @@
 "use client";
-import { useRouter, useSearchParams } from "next/navigation";
 import { Platform } from "@/app/lib/TypeDefinations";
-import {
-    // Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
 import { Select } from "@radix-ui/themes";
+import { useRouter, useSearchParams } from "next/navigation";
 
 type MyPageProps = {
     platforms: Platform[];
@@ -22,6 +13,8 @@ const PlatformGameFilterList = ({ platforms }: MyPageProps) => {
     const handleValueChange = (p: string) => {
         const params = new URLSearchParams();
         if (p !== "all") params.append("platform", p);
+        if (searchParams.get("search"))
+            params.append("search", searchParams.get("search")!);
         if (searchParams.get("genres"))
             params.append("genres", searchParams.get("genres")!);
         if (searchParams.get("sortOrder"))
@@ -45,25 +38,6 @@ const PlatformGameFilterList = ({ platforms }: MyPageProps) => {
                     ))}
                 </Select.Content>
             </Select.Root>
-            {/* <Select
-                defaultValue={searchParams.get("platform") || "all"}
-                onValueChange={handleValueChange}
-            >
-                <SelectTrigger className='w-[180px] border-full'>
-                    <SelectValue placeholder='Select a Platform' />
-                </SelectTrigger>
-                <SelectContent>
-                    <SelectItem value={"all"}>All</SelectItem>
-                    <SelectGroup>
-                        <SelectLabel>---Platforms:---</SelectLabel>
-                        {platforms.map((p: Platform) => (
-                            <SelectItem key={p.id} value={p.id.toString()}>
-                                {p.name}
-                            </SelectItem>
-                        ))}
-                    </SelectGroup>
-                </SelectContent>
-            </Select> */}
         </>
     );
 };

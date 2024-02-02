@@ -1,17 +1,24 @@
 import GameCard from "@/app/games/_components/GameCard";
+import { Game } from "@/app/lib/TypeDefinations";
 import { fetchGamesWithParameters } from "@/app/lib/data";
 import { Flex, Grid } from "@radix-ui/themes";
 import Pagination from "./Pagination";
-import { Game } from "@/app/lib/TypeDefinations";
 
 type MyPageProps = {
     platform: string;
     genre: string;
     pagesss: string;
     order: string;
+    search: string;
 };
 
-const GameGrid = async ({ pagesss, platform, genre, order }: MyPageProps) => {
+const GameGrid = async ({
+    pagesss,
+    platform,
+    genre,
+    order,
+    search,
+}: MyPageProps) => {
     // console.log(genre);
     const pageSize = 9;
     const page = parseInt(pagesss) || 1;
@@ -20,7 +27,8 @@ const GameGrid = async ({ pagesss, platform, genre, order }: MyPageProps) => {
         page.toString(),
         platform,
         genre,
-        order
+        order,
+        search
     );
     return (
         <>

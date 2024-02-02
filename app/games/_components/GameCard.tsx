@@ -1,10 +1,10 @@
+import { Game } from "@/app/lib/TypeDefinations";
 import { Card, Flex, Heading } from "@radix-ui/themes";
 import Image from "next/image";
 import Link from "next/link";
 import CriticScore from "../../../components/CriticScore";
 import PlatformIconList from "../../../components/PlatformIconList";
 import getCroppedImageUrl from "../../lib/image-url";
-import { Game } from "@/app/lib/TypeDefinations";
 
 const GameCard = ({ game }: { game: Game }) => {
     return (

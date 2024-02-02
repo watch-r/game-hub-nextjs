@@ -9,6 +9,8 @@ const SortSelector = () => {
     const handleValueChange = (order: string) => {
         const params = new URLSearchParams();
         if (order !== "all") params.append("sortOrder", order);
+        if (searchParams.get("search"))
+            params.append("search", searchParams.get("search")!);
         if (searchParams.get("genres"))
             params.append("genres", searchParams.get("genres")!);
         if (searchParams.get("platform"))
@@ -43,8 +45,9 @@ const SortSelector = () => {
         },
     ];
     return (
+        
         <Select.Root
-            defaultValue={searchParams.get("sortOrder") || "all"}
+            defaultValue={"all"||searchParams.get("sortOrder")}
             onValueChange={handleValueChange}
         >
             <Select.Trigger variant='soft' />
@@ -56,23 +59,6 @@ const SortSelector = () => {
                 ))}
             </Select.Content>
         </Select.Root>
-        // <Select
-        //
-        // >
-        //     <SelectTrigger className='w-[180px] border-full'>
-        //         <SelectValue placeholder='Select a Platform' />
-        //     </SelectTrigger>
-        //     <SelectContent>
-        //         <SelectGroup>
-        //             <SelectLabel>---Sort Order:---</SelectLabel>
-        // {sorOrder.map((order) => (
-        //     <SelectItem key={order.value} value={order.value}>
-        //         {order.label}
-        //     </SelectItem>
-        // ))}
-        //         </SelectGroup>
-        //     </SelectContent>
-        // </Select>
     );
 };
 
