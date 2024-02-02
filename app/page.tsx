@@ -5,10 +5,11 @@ import Pagination from "./games/_components/Pagination";
 import SortSelector from "./games/_components/SortSelector";
 import PlatformGameFilterList from "./games/_components/PlatformGameFilterList";
 import SearchInput from "@/components/SearchInput";
+import { fetchTest } from "./api/FetchData";
 // import { fetchThings } from "./api/games/route";
 
 export default async function Home() {
-    // const games = await fetchThings();
+    const games = await fetchTest();
     // console.log(games)
     return (
         <>

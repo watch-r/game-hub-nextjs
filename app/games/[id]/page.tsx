@@ -1,11 +1,21 @@
-import { fetchGameById } from "@/app/api/FetchData";
-import { Box, Container, Flex, Grid, Heading, Separator, Text } from "@radix-ui/themes";
+// import { fetchGameById } from "@/app/api/FetchData";
+import {
+    Box,
+    Container,
+    Flex,
+    Grid,
+    Heading,
+    Separator,
+    Text,
+} from "@radix-ui/themes";
 import delay from "delay";
 import Image from "next/image";
 import React from "react";
 import { Platform } from "../_components/GameGrid";
 import TopBadge from "./_components/TopBadge";
 import Descriptions from "./_components/Description";
+import { fetchGameById } from "@/app/api/FetchData";
+import fetchGameByIds from "@/app/api/games/[id]/route";
 
 interface Props {
     params: { id: string };
@@ -38,13 +48,15 @@ export interface Platformo {
 
 const GameDetailsPage = async ({ params }: Props) => {
     // await delay(2000);
-    const game: GameById = await fetchGameById(params.id);
-    // console.log(game.platforms);
+    // const res = await fetch(`http://localhost:3000/api/games/${params.id}`);
+    // const game: GameById = await res.json();
+    const game: GameById = await fetchGameByIds(params.id)
+    // Promise.all()
     return (
         <Container p={"2"}>
             <Grid columns={{ initial: "1", sm: "7" }} gap={"3"}>
-                <Box className='md:col-span-4'>
-                    <Flex direction={"column"} gap={'3'}>
+                <Box className="md:col-span-4">
+                    <Flex direction={"column"} gap={"3"}>
                         <Heading size={"8"}>{game.name}</Heading>
                         <Separator my="2" size="4" />
                         <TopBadge
@@ -57,16 +69,24 @@ const GameDetailsPage = async ({ params }: Props) => {
                         {game.rating}
                     </Flex>
                 </Box>
-                <Box className='md:col-span-3'>
+                <Box className="md:col-span-3">
                     <Image
-                        src={game.background_image?game.background_image:'/stock_image.jpeg'}
-                        alt='Image of ...'
+                        src={
+                            game.background_image
+                                ? game.background_image
+                                : "/stock_image.jpeg"
+                        }
+                        alt="Image of ..."
                         width={"300"}
                         height={"300"}
                     />
                     <Image
-                        src={game.background_image_additional?game.background_image_additional:'/placeholder001.png'}
-                        alt='Image of ...'
+                        src={
+                            game.background_image_additional
+                                ? game.background_image_additional
+                                : "/placeholder001.png"
+                        }
+                        alt="Image of ..."
                         width={"300"}
                         height={"300"}
                     />

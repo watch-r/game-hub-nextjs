@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server";
 
-export default async function fetchGameByIds(id: string) {
+export default async function fetchGenreByIds(id: string) {
     const response = await fetch(
-        `${process.env.RAWG_API_BASE_URL}/games/${id}?key=${process.env.RAWG_API_KEY}`,
+        `${process.env.RAWG_API_BASE_URL}/genres/${id}?key=${process.env.RAWG_API_KEY}`,
         {
             method: "GET",
             headers: {
@@ -11,6 +11,6 @@ export default async function fetchGameByIds(id: string) {
             },
         }
     );
-    if (!response) notFound; // If no response is returned, it means the game was not found
+    if (!response.ok) notFound;
     return response.json();
 }

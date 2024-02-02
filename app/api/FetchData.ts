@@ -67,3 +67,17 @@ export async function fetchGameswithPages(
     const { count, results } = await res.json();
     return { count, results };
 }
+
+import axios from "axios";
+
+export function fetchTest() {
+    axios
+        .get(`${process.env.RAWG_API_BASE_URL}`, {
+            params: {
+                key: `${process.env.RAWG_API_KEY}`,
+                page: 2,
+                page_size: 2,
+            },
+        })
+        .then();
+}
