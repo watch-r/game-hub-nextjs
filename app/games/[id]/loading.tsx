@@ -1,6 +1,5 @@
 import { UpdateIcon } from "@radix-ui/react-icons";
 import { Container, Flex } from "@radix-ui/themes";
-import React from "react";
 
 const LoadingPageOfGameDetails = () => {
     return (

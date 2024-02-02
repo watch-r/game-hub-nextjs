@@ -1,8 +1,7 @@
-import { fetchApi } from "@/app/api/FetchData";
 import GameCard from "@/app/games/_components/GameCard";
+import { fetchGamesWithParameters } from "@/app/lib/data";
 import { Flex, Grid } from "@radix-ui/themes";
 import Pagination from "./Pagination";
-import { fetchGamesWithParameters } from "@/app/api/games/route";
 
 export interface Game {
     id: number;

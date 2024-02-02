@@ -1,10 +1,10 @@
 import { Card, Flex, Heading } from "@radix-ui/themes";
 import Image from "next/image";
-import getCroppedImageUrl from "../../../components/image-url";
-import CriticScore from "../../../components/CriticScore";
-import { Game } from "./GameGrid";
-import PlatformIconList from "../../../components/PlatformIconList";
 import Link from "next/link";
+import CriticScore from "../../../components/CriticScore";
+import PlatformIconList from "../../../components/PlatformIconList";
+import getCroppedImageUrl from "../../lib/image-url";
+import { Game } from "./GameGrid";
 
 const GameCard = ({ game }: { game: Game }) => {
     return (

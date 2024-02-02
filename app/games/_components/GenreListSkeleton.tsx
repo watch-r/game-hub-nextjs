@@ -1,16 +1,13 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { ActivityLogIcon } from "@radix-ui/react-icons";
 import {
     Avatar,
-    Badge,
     Box,
-    Container,
     Flex,
-    Heading,
-    Section,
+    Heading
 } from "@radix-ui/themes";
-import { Skeleton } from "@/components/ui/skeleton";
 
 const GenreListSkeleton = () => {
     const results = [

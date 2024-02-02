@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ActivityLogIcon } from "@radix-ui/react-icons";
 import { Avatar, Badge, Box, Flex, Heading } from "@radix-ui/themes";
 import { useRouter, useSearchParams } from "next/navigation";
-import getCroppedImageUrl from "../../../components/image-url";
+import getCroppedImageUrl from "../../lib/image-url";
 
 export interface Genre {
     id: number;

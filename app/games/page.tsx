@@ -1,10 +1,9 @@
 import { Box, Container, Flex, Grid, Heading } from "@radix-ui/themes";
-import fetchGames from "../api/games/route";
-import fetchGenres from "../api/genres/route";
 import GameGrid from "./_components/GameGrid";
+import GenreList from "./_components/GenreList";
 import PlatformGameFilter from "./_components/PlatformGameFilter";
 import SortSelector from "./_components/SortSelector";
-import GenreList from "./_components/GenreList";
+import fetchGenres from "../lib/data";
 export interface searchProps {
     searchParams: {
         platform: string;
@@ -12,7 +11,7 @@ export interface searchProps {
         page: string;
         sortOrder: string;
     };
-    selectedGenre: string;
+    selectedGenre: never;
 }
 
 const GameListPage = async ({ searchParams, selectedGenre }: searchProps) => {

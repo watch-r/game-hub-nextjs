@@ -1,8 +1,6 @@
-import { Flex, Grid } from "@radix-ui/themes";
-import React from "react";
-import GameCardSkeleton from "./GameCardSkeleton";
-import { SkeletonTheme } from "react-loading-skeleton";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Flex, Grid } from "@radix-ui/themes";
+import GameCardSkeleton from "./GameCardSkeleton";
 
 const GameGridSkeleton = () => {
     const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9];
