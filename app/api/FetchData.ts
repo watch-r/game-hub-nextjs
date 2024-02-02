@@ -13,6 +13,7 @@ export async function fetchData(data: string) {
     return { count, results };
 }
 
+
 export async function fetchApi(
     endpoint: string,
     page: string,

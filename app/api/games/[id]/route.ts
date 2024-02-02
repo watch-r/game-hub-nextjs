@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import { NextRequest, NextResponse } from "next/server";
 
 export default async function fetchGameByIds(id: string) {
     const response = await fetch(

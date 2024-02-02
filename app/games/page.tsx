@@ -1,10 +1,10 @@
 import { Box, Container, Flex, Grid, Heading } from "@radix-ui/themes";
+import fetchGames from "../api/games/route";
+import fetchGenres from "../api/genres/route";
 import GameGrid from "./_components/GameGrid";
 import PlatformGameFilter from "./_components/PlatformGameFilter";
-import Genre from "./_components/Genre";
-import delay from "delay";
 import SortSelector from "./_components/SortSelector";
-import { useSearchParams } from "next/navigation";
+import GenreList from "./_components/GenreList";
 export interface searchProps {
     searchParams: {
         platform: string;
@@ -12,22 +12,30 @@ export interface searchProps {
         page: string;
         sortOrder: string;
     };
+    selectedGenre: string;
 }
 
-const GameListPage = async ({ searchParams }: searchProps) => {
+const GameListPage = async ({ searchParams, selectedGenre }: searchProps) => {
     // await delay(3000); // Simulate loading time. Remove in production!
     // console.log(searchParams.sortOrder);
     // console.log(searchParams.genres);
+    const genreResults = await fetchGenres();
+    // const { gameCount, gameResults } = await fetchGames();
+    // console.log(genreResults);
 
     return (
         <Container>
             <Grid columns={{ initial: "1", sm: "7" }} gap={"2"}>
-                <Box className=" hidden md:block md:col-span-2 px-3 py-3 overflow-auto">
-                    <Genre selectedGenre={searchParams.genres}/>
+                <Box className=' hidden md:block md:col-span-2 px-3 py-3 overflow-auto'>
+                    <GenreList
+                        genres={genreResults}
+                        count={100}
+                        selectedGenre={selectedGenre}
+                    />
                 </Box>
-                <Box className="md:col-span-5" px={"3"}>
+                <Box className='md:col-span-5' px={"3"}>
                     <Flex gap={"2"} p={"2"} direction={"column"}>
-                        <Heading size={"8"} className="border-b-2 px-1 pb-1">
+                        <Heading size={"8"} className='border-b-2 px-1 pb-1'>
                             Games
                         </Heading>
                         <Flex direction={"row"} gap={"2"}>

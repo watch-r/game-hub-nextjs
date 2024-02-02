@@ -17,8 +17,12 @@ interface Props {
 const Pagination = ({ itemCount, pageSize, currentpage }: Props) => {
     const router = useRouter();
     const searchParams = useSearchParams();
-    const pageCount = Math.ceil(itemCount / pageSize);
+    let pageCount = Math.ceil(itemCount / pageSize);
+
+    // Api has only 9999 games limit for filtering, last two of next three line of codes  are used to handle this situation
     if (pageCount <= 1) return null; // If there is only one
+    if (searchParams.has("platform") || searchParams.has("genres"))
+        if (pageCount > 1112) pageCount = 1111;
 
     const changePage = (page: number) => {
         const params = new URLSearchParams(searchParams);
@@ -29,7 +33,7 @@ const Pagination = ({ itemCount, pageSize, currentpage }: Props) => {
     return (
         <Flex align='center' gap='2'>
             <Text size='2'>
-               page {currentpage} of {pageCount}
+                page {currentpage} of {pageCount}
             </Text>
             <Button
                 variant='surface'

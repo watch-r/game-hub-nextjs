@@ -1,7 +1,8 @@
-import { fetchApi, fetchData, fetchGameswithPages } from "@/app/api/FetchData";
+import { fetchApi } from "@/app/api/FetchData";
 import GameCard from "@/app/games/_components/GameCard";
 import { Flex, Grid } from "@radix-ui/themes";
 import Pagination from "./Pagination";
+import { fetchGamesWithParameters } from "@/app/api/games/route";
 
 export interface Game {
     id: number;
@@ -26,19 +27,16 @@ const GameGrid = async ({ pagesss, platform, genre, order }: Props) => {
     // console.log(genre);
     const pageSize = 9;
     const page = parseInt(pagesss) || 1;
-    const { count, results } = await fetchApi(
-        "games?",
-        page.toString(),
+    const { count, results } = await fetchGamesWithParameters(
         pageSize.toString(),
+        page.toString(),
         platform,
         genre,
         order
     );
-    // const {count , results} = await fetchGameswithPages('games?',page.toString(),pageSize.toString()); //page, pagesize
-
     return (
         <>
-            <Flex gap={"3"} direction={"column"} align={'center'}>
+            <Flex gap={"3"} direction={"column"} align={"center"}>
                 <Grid columns={{ initial: "1", sm: "2", md: "3" }} gap={"2"}>
                     {results.map((game: Game) => (
                         <GameCard key={game.id} game={game} />

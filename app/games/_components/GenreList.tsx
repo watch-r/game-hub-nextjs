@@ -1,10 +1,9 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { ActivityLogIcon } from "@radix-ui/react-icons";
-import { Avatar, Badge, Box, Flex, Heading, Section } from "@radix-ui/themes";
+import { Avatar, Badge, Box, Flex, Heading } from "@radix-ui/themes";
 import { useRouter, useSearchParams } from "next/navigation";
 import getCroppedImageUrl from "../../../components/image-url";
-import { useState } from "react";
 
 export interface Genre {
     id: number;
