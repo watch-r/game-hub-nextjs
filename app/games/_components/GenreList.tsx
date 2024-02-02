@@ -4,14 +4,8 @@ import { ActivityLogIcon } from "@radix-ui/react-icons";
 import { Avatar, Badge, Box, Flex, Heading } from "@radix-ui/themes";
 import { useRouter, useSearchParams } from "next/navigation";
 import getCroppedImageUrl from "../../lib/image-url";
+import { Genre } from "@/app/lib/TypeDefinations";
 
-export interface Genre {
-    id: number;
-    name: string;
-    slug: string;
-    games_count: number;
-    image_background: string;
-}
 type MyPageProps = {
     genres: Genre[];
     count: number;

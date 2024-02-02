@@ -2,19 +2,8 @@ import GameCard from "@/app/games/_components/GameCard";
 import { fetchGamesWithParameters } from "@/app/lib/data";
 import { Flex, Grid } from "@radix-ui/themes";
 import Pagination from "./Pagination";
+import { Game } from "@/app/lib/TypeDefinations";
 
-export interface Game {
-    id: number;
-    name: string;
-    background_image: string;
-    parent_platforms: { platform: Platform }[];
-    metacritic: number;
-}
-export interface Platform {
-    id: string;
-    name: string;
-    slug: string;
-}
 interface Props {
     platform: string;
     genre: string;

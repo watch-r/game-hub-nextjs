@@ -4,7 +4,7 @@ import Link from "next/link";
 import CriticScore from "../../../components/CriticScore";
 import PlatformIconList from "../../../components/PlatformIconList";
 import getCroppedImageUrl from "../../lib/image-url";
-import { Game } from "./GameGrid";
+import { Game } from "@/app/lib/TypeDefinations";
 
 const GameCard = ({ game }: { game: Game }) => {
     return (

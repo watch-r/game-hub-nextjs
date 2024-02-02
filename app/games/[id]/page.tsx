@@ -1,5 +1,4 @@
-// import { fetchGameById } from "@/app/api/FetchData";
-// import { fetchGameById } from "@/app/lib/FetchData";
+import { GameById } from "@/app/lib/TypeDefinations";
 import { fetchGameById } from "@/app/lib/data";
 import {
     Box,
@@ -12,35 +11,9 @@ import {
 import Image from "next/image";
 import Descriptions from "./_components/Description";
 import TopBadge from "./_components/TopBadge";
-// import { fetchGameByIds } from "@/app/api/games/[id]/route";
 
 interface Props {
     params: { id: string };
-}
-
-interface ratings {
-    id: number;
-    title: string;
-    count: number;
-    percent: number;
-}
-
-export interface GameById {
-    name: string;
-    description: string; // | undefined
-    background_image: string;
-    released: string;
-    background_image_additional: string;
-    metacritic: number;
-    rating: number;
-    ratings: ratings[];
-    platforms: Platformo[];
-    playtime: string;
-}
-export interface Platformo {
-    platform: { id: string; name: string; slug: string };
-    released_at?: string;
-    requirements?: string;
 }
 
 const GameDetailsPage = async ({ params }: Props) => {

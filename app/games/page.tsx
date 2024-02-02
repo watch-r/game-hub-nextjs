@@ -1,9 +1,9 @@
 import { Box, Container, Flex, Grid, Heading } from "@radix-ui/themes";
+import fetchGenres, { fetchGames, fetchPlatforms } from "../lib/data";
 import GameGrid from "./_components/GameGrid";
 import GenreList from "./_components/GenreList";
-import PlatformGameFilter from "./_components/PlatformGameFilter";
+import PlatformGameFilterList from "./_components/PlatformGameFilterList";
 import SortSelector from "./_components/SortSelector";
-import fetchGenres from "../lib/data";
 export interface searchProps {
     searchParams: {
         platform: string;
@@ -19,8 +19,8 @@ const GameListPage = async ({ searchParams, selectedGenre }: searchProps) => {
     // console.log(searchParams.sortOrder);
     // console.log(searchParams.genres);
     const genreResults = await fetchGenres();
-    // const { gameCount, gameResults } = await fetchGames();
-    // console.log(genreResults);
+    const platforms = await fetchPlatforms();
+    const { count } = await fetchGames();
 
     return (
         <Container>
@@ -28,7 +28,7 @@ const GameListPage = async ({ searchParams, selectedGenre }: searchProps) => {
                 <Box className=' hidden md:block md:col-span-2 px-3 py-3 overflow-auto'>
                     <GenreList
                         genres={genreResults}
-                        count={100}
+                        count={count}
                         selectedGenre={selectedGenre}
                     />
                 </Box>
@@ -38,7 +38,7 @@ const GameListPage = async ({ searchParams, selectedGenre }: searchProps) => {
                             Games
                         </Heading>
                         <Flex direction={"row"} gap={"2"}>
-                            <PlatformGameFilter />
+                            <PlatformGameFilterList platforms={platforms} />
                             <SortSelector />
                         </Flex>
                         <GameGrid

@@ -1,3 +1,4 @@
+import { Platform } from "@/app/lib/TypeDefinations";
 import { Box, Flex } from "@radix-ui/themes";
 import {
     FaAndroid,
@@ -11,7 +12,6 @@ import {
 import { IconType } from "react-icons/lib";
 import { MdPhoneIphone } from "react-icons/md";
 import { SiNintendogamecube } from "react-icons/si";
-import { Platform } from "../app/games/_components/GameGrid";
 
 const PlatformIconList = ({ platforms }: { platforms: Platform[] }) => {
     const iconsMap: { [key: string]: IconType } = {

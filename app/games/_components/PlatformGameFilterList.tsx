@@ -1,7 +1,6 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Platform } from "./GameGrid";
-
+import { Platform } from "@/app/lib/TypeDefinations";
 import {
     Select,
     SelectContent,
@@ -37,8 +36,8 @@ const PlatformGameFilterList = ({ platforms }: MyPageProps) => {
                     router.push("/games" + query);
                 }}
             >
-                <SelectTrigger className="w-[180px] border-full">
-                    <SelectValue placeholder="Select a Platform" />
+                <SelectTrigger className='w-[180px] border-full'>
+                    <SelectValue placeholder='Select a Platform' />
                 </SelectTrigger>
                 <SelectContent>
                     <SelectItem value={"all"}>All</SelectItem>

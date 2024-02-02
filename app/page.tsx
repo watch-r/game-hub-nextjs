@@ -1,12 +1,8 @@
+import SearchInput from "@/components/SearchInput";
 import { Button as Botton } from "@/components/ui/button";
 import { Button, Container, Flex } from "@radix-ui/themes";
-// import TestPurposesOnly from "./test";
-import SearchInput from "@/components/SearchInput";
-import { fetchTest } from "./lib/FetchData";
-// import { fetchThings } from "./api/games/route";
 
 export default async function Home() {
-    const games = await fetchTest();
     // console.log(games)
     return (
         <>
@@ -15,7 +11,6 @@ export default async function Home() {
                 <Flex direction='column' gap={"3"} width={"auto"}>
                     <Button>Button radix ui check</Button>
                     <Botton>Button shadcn ui check</Botton>
-                    {/* <SortSelector/> */}
                     <SearchInput />
                 </Flex>
             </Container>

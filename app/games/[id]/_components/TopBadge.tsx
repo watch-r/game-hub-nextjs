@@ -1,11 +1,7 @@
-import { Box, Flex, Text, Badge } from "@radix-ui/themes";
-import React from "react";
-import { Platform } from "../../_components/GameGrid";
-import PlatformIconList from "@/components/PlatformIconList";
-import { Platformo } from "../page";
-import { iconsMap } from "./IconMap";
+import { Platformo } from "@/app/lib/TypeDefinations";
+import { Badge, Box, Flex } from "@radix-ui/themes";
 import CriticScore from "../../../../components/CriticScore";
-// import {  } from "@/components/ui/badge";
+import { iconsMap } from "./IconMap";
 
 interface Props {
     released_at: string;

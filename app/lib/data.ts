@@ -8,7 +8,8 @@ export async function fetchGames() {
             },
         }
     );
-    return response.json();
+    const { count, results } = await response.json();
+    return { count, results };
 }
 
 export async function fetchGamesWithParameters(
@@ -87,4 +88,18 @@ export async function fetchGameById(data: string) {
     );
     const game = await res.json();
     return game;
+}
+
+export async function fetchPlatforms() {
+    const response = await fetch(
+        `${process.env.RAWG_API_BASE_URL}/platforms?key=${process.env.RAWG_API_KEY}`,
+        {
+            method: "GET",
+            headers: {
+                accept: "application/json",
+            },
+        }
+    );
+    const { count, results } = await response.json();
+    return results;
 }
