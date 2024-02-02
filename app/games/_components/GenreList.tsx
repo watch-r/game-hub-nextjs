@@ -6,15 +6,36 @@ import { useRouter, useSearchParams } from "next/navigation";
 import getCroppedImageUrl from "../../lib/image-url";
 import { Genre } from "@/app/lib/TypeDefinations";
 
-type MyPageProps = {
+type Genres = {
     genres: Genre[];
     count: number;
     selectedGenre: string;
 };
 
-const GenreList = ({ genres, count, selectedGenre }: MyPageProps) => {
+const GenreList = ({ genres, count, selectedGenre }: Genres) => {
     const router = useRouter();
     const searchParams = useSearchParams();
+
+    const handleClick = () => {
+        const params = new URLSearchParams();
+        if (searchParams.get("platform"))
+            params.append("platform", searchParams.get("platform")!);
+        if (searchParams.get("sortOrder"))
+            params.append("sortOrder", searchParams.get("sortOrder")!);
+        const query = params.size ? "?" + params.toString() : "";
+        router.push("/games" + query);
+    };
+
+    const handleClickTwo = (genre: Genre) => {
+        const params = new URLSearchParams();
+        if (genre.id) params.append("genres", genre.slug);
+        if (searchParams.get("platform"))
+            params.append("platform", searchParams.get("platform")!);
+        if (searchParams.get("sortOrder"))
+            params.append("sortOrder", searchParams.get("sortOrder")!);
+        const query = params.size ? "?" + params.toString() : "";
+        router.push("/games" + query);
+    };
     return (
         <>
             <Heading size={"6"} className='border-b-2 p-1'>
@@ -32,23 +53,7 @@ const GenreList = ({ genres, count, selectedGenre }: MyPageProps) => {
                     radius='medium'
                 />
                 <Button
-                    onClick={() => {
-                        const params = new URLSearchParams();
-                        if (searchParams.get("platform"))
-                            params.append(
-                                "platform",
-                                searchParams.get("platform")!
-                            );
-                        if (searchParams.get("sortOrder"))
-                            params.append(
-                                "sortOrder",
-                                searchParams.get("sortOrder")!
-                            );
-                        const query = params.size
-                            ? "?" + params.toString()
-                            : "";
-                        router.push("/games" + query);
-                    }}
+                    onClick={handleClick}
                     variant={null}
                     style={{
                         fontWeight:
@@ -70,25 +75,7 @@ const GenreList = ({ genres, count, selectedGenre }: MyPageProps) => {
                             radius='large'
                         />
                         <Button
-                            onClick={() => {
-                                const params = new URLSearchParams();
-                                if (genre.id)
-                                    params.append("genres", genre.slug);
-                                if (searchParams.get("platform"))
-                                    params.append(
-                                        "platform",
-                                        searchParams.get("platform")!
-                                    );
-                                if (searchParams.get("sortOrder"))
-                                    params.append(
-                                        "sortOrder",
-                                        searchParams.get("sortOrder")!
-                                    );
-                                const query = params.size
-                                    ? "?" + params.toString()
-                                    : "";
-                                router.push("/games" + query);
-                            }}
+                            onClick={() => handleClickTwo(genre)}
                             variant={null}
                             className='sm:text-sm'
                             style={{

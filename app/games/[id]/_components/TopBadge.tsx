@@ -1,16 +1,16 @@
 import { Platformo } from "@/app/lib/TypeDefinations";
 import { Badge, Box, Flex } from "@radix-ui/themes";
 import CriticScore from "../../../../components/CriticScore";
-import { iconsMap } from "./IconMap";
+import { iconsMap } from "../../../lib/IconMap";
 
-interface Props {
+type MyPageProps = {
     released_at: string;
     platforms: Platformo[];
     playtime: string;
     score: number;
-}
+};
 
-const TopBadge = ({ released_at, platforms, playtime, score }: Props) => {
+const TopBadge = ({ released_at, platforms, playtime, score }: MyPageProps) => {
     const iconSet = new Set();
     let IconComponent;
     // Loop through the platforms and add the icon components to the Set

@@ -8,18 +8,19 @@ import {
 import { Button, Flex, Text } from "@radix-ui/themes";
 import { useRouter, useSearchParams } from "next/navigation";
 
-interface Props {
+type MyPageProps = {
     itemCount: number;
     pageSize: number;
     currentpage: number;
-}
+};
 
-const Pagination = ({ itemCount, pageSize, currentpage }: Props) => {
+const Pagination = ({ itemCount, pageSize, currentpage }: MyPageProps) => {
     const router = useRouter();
     const searchParams = useSearchParams();
     let pageCount = Math.ceil(itemCount / pageSize);
 
-    // Api has only 9999 games limit for filtering, last two of next three line of codes  are used to handle this situation
+    // Api has only 9999 games limit for filtering,
+    // last two of next three line of codes  are used to handle this situation.
     if (pageCount <= 1) return null; // If there is only one
     if (searchParams.has("platform") || searchParams.has("genres"))
         if (pageCount > 1112) pageCount = 1111;

@@ -40,7 +40,7 @@ const SortSelector = () => {
         },
     ];
     return (
-        <Select 
+        <Select
             defaultValue={searchParams.get("sortOrder") || "all"}
             onValueChange={(order) => {
                 const params = new URLSearchParams();
@@ -53,17 +53,14 @@ const SortSelector = () => {
                 router.push("/games" + query);
             }}
         >
-            <SelectTrigger className="w-[180px] border-full">
-                <SelectValue placeholder="Select a Platform" />
+            <SelectTrigger className='w-[180px] border-full'>
+                <SelectValue placeholder='Select a Platform' />
             </SelectTrigger>
             <SelectContent>
                 <SelectGroup>
                     <SelectLabel>---Sort Order:---</SelectLabel>
                     {sorOrder.map((order) => (
-                        <SelectItem
-                            key={order.value}
-                            value={order.value}
-                        >
+                        <SelectItem key={order.value} value={order.value}>
                             {order.label}
                         </SelectItem>
                     ))}

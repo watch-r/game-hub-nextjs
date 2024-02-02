@@ -1,25 +1,24 @@
 import { Box, Container, Flex, Grid, Heading } from "@radix-ui/themes";
+import { Genre, Platform } from "../lib/TypeDefinations";
 import fetchGenres, { fetchGames, fetchPlatforms } from "../lib/data";
 import GameGrid from "./_components/GameGrid";
 import GenreList from "./_components/GenreList";
 import PlatformGameFilterList from "./_components/PlatformGameFilterList";
 import SortSelector from "./_components/SortSelector";
-export interface searchProps {
+
+type MySearchProps = {
     searchParams: {
         platform: string;
         genres: string;
         page: string;
         sortOrder: string;
     };
-    selectedGenre: never;
-}
+};
 
-const GameListPage = async ({ searchParams, selectedGenre }: searchProps) => {
+const GameListPage = async ({ searchParams }: MySearchProps) => {
     // await delay(3000); // Simulate loading time. Remove in production!
-    // console.log(searchParams.sortOrder);
-    // console.log(searchParams.genres);
-    const genreResults = await fetchGenres();
-    const platforms = await fetchPlatforms();
+    const genreResults: Genre[] = await fetchGenres();
+    const platforms: Platform[] = await fetchPlatforms();
     const { count } = await fetchGames();
 
     return (
@@ -29,7 +28,7 @@ const GameListPage = async ({ searchParams, selectedGenre }: searchProps) => {
                     <GenreList
                         genres={genreResults}
                         count={count}
-                        selectedGenre={selectedGenre}
+                        selectedGenre={searchParams.genres}
                     />
                 </Box>
                 <Box className='md:col-span-5' px={"3"}>

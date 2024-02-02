@@ -12,11 +12,11 @@ import Image from "next/image";
 import Descriptions from "./_components/Description";
 import TopBadge from "./_components/TopBadge";
 
-interface Props {
+type MyPageProps = {
     params: { id: string };
-}
+};
 
-const GameDetailsPage = async ({ params }: Props) => {
+const GameDetailsPage = async ({ params }: MyPageProps) => {
     // await delay(2000);
     // const res = await fetch(`http://localhost:3000/api/games/${params.id}`);
     // const game: GameById = await res.json();

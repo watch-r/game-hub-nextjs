@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 export async function fetchGames() {
     const response = await fetch(
         `${process.env.RAWG_API_BASE_URL}/games?key=${process.env.RAWG_API_KEY}`,
@@ -57,9 +58,6 @@ export default async function fetchGenres() {
     const { results } = await response.json();
     return results;
 }
-
-import { notFound } from "next/navigation";
-import { NextRequest, NextResponse } from "next/server";
 
 export async function fetchGenreByIds(id: string) {
     const response = await fetch(

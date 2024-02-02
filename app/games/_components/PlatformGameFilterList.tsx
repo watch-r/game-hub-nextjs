@@ -51,11 +51,6 @@ const PlatformGameFilterList = ({ platforms }: MyPageProps) => {
                     </SelectGroup>
                 </SelectContent>
             </Select>
-            {/* {platforms.map((p: Platform) => (
-                <li key={p.id} value={p.id.toString()}>
-                    {p.slug}
-                </li>
-            ))} */}
         </>
     );
 };

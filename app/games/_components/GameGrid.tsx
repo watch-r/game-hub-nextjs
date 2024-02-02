@@ -4,14 +4,14 @@ import { Flex, Grid } from "@radix-ui/themes";
 import Pagination from "./Pagination";
 import { Game } from "@/app/lib/TypeDefinations";
 
-interface Props {
+type MyPageProps = {
     platform: string;
     genre: string;
     pagesss: string;
     order: string;
-}
+};
 
-const GameGrid = async ({ pagesss, platform, genre, order }: Props) => {
+const GameGrid = async ({ pagesss, platform, genre, order }: MyPageProps) => {
     // console.log(genre);
     const pageSize = 9;
     const page = parseInt(pagesss) || 1;

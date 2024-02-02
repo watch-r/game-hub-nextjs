@@ -12,7 +12,7 @@ const GameGridSkeleton = () => {
                         <GameCardSkeleton key={skeleton} />
                     ))}
                 </Grid>
-                <Skeleton className="w-12 h-3" />
+                <Skeleton className='w-12 h-3' />
             </Flex>
         </>
     );
