@@ -9,40 +9,34 @@ import { Game } from "@/app/lib/TypeDefinations";
 const GameCard = ({ game }: { game: Game }) => {
     return (
         <Card style={{ maxWidth: 400 }}>
-            <Link href={`games/${game.id}`}>
-                <Flex
-                    direction={"column-reverse"}
-                    gap={"2"}
-                    justify={"between"}
-                >
-                    <Flex direction={"column"} align={"center"}>
-                        <Image
-                            // getCroppedImageUrl(game.background_image)
-                            src={
-                                game.background_image
-                                    ? getCroppedImageUrl(game.background_image)
-                                    : "/stock_image.jpeg"
-                            }
-                            alt=''
-                            width={"300"}
-                            height={"200"}
-                            className='rounded-md'
-                            priority
-                        />
+            <Flex direction={"column-reverse"} gap={"2"} justify={"between"}>
+                <Flex direction={"column"} align={"center"}>
+                    <Image
+                        // getCroppedImageUrl(game.background_image)
+                        src={
+                            game.background_image
+                                ? getCroppedImageUrl(game.background_image)
+                                : "/stock_image.jpeg"
+                        }
+                        alt=''
+                        width={"300"}
+                        height={"200"}
+                        className='rounded-md'
+                        priority
+                    />
+                    <Link href={`games/${game.id}`}>
                         <Heading size={"5"} weight={"medium"} className='p-3'>
                             {game.name}
                         </Heading>
-                    </Flex>
-                    <Flex justify={"between"}>
-                        <PlatformIconList
-                            platforms={game.parent_platforms.map(
-                                (p) => p.platform
-                            )}
-                        />
-                        <CriticScore score={game.metacritic} />
-                    </Flex>
+                    </Link>
                 </Flex>
-            </Link>
+                <Flex justify={"between"}>
+                    <PlatformIconList
+                        platforms={game.parent_platforms.map((p) => p.platform)}
+                    />
+                    <CriticScore score={game.metacritic} />
+                </Flex>
+            </Flex>
         </Card>
     );
 };
