@@ -9,6 +9,7 @@ import ResetButton from "./_components/resetButton";
 import { Suspense } from "react";
 import GenreListSkeleton from "./_components/GenreListSkeleton";
 import GameGridSkeleton from "./_components/GameGridSkeleton";
+import DynamicHeading from "./_components/DynamicHeading";
 
 type MySearchProps = {
     searchParams: {
@@ -40,9 +41,13 @@ const GameListPage = async ({ searchParams }: MySearchProps) => {
                 </Box>
                 <Box className='md:col-span-5' px={"3"}>
                     <Flex gap={"2"} p={"2"} direction={"column"}>
-                        <Heading size={"8"} className='border-b-2 px-1 pb-1'>
+                        <DynamicHeading
+                            genres={genreResults}
+                            platforms={platforms}
+                        />
+                        {/* <Heading size={"8"} className='border-b-2 px-1 pb-1'>
                             Games
-                        </Heading>
+                        </Heading> */}
                         <Flex direction={"row"} gap={"2"}>
                             <PlatformGameFilterList platforms={platforms} />
                             <SortSelector />
