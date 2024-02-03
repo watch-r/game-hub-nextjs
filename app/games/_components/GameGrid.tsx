@@ -1,5 +1,5 @@
 import GameCard from "@/app/games/_components/GameCard";
-import { Game } from "@/app/lib/TypeDefinations";
+import {  Gamep } from "@/app/lib/TypeDefinations";
 import { fetchGamesWithParameters } from "@/app/lib/data";
 import { Flex, Grid } from "@radix-ui/themes";
 import Pagination from "./Pagination";
@@ -34,8 +34,8 @@ const GameGrid = async ({
         <>
             <Flex gap={"3"} direction={"column"} align={"center"}>
                 <Grid columns={{ initial: "1", sm: "2", md: "3" }} gap={"2"}>
-                    {results.map((game: Game) => (
-                        <GameCard key={game.id} game={game} />
+                    {results.map((gamePiece: Gamep) => (
+                        <GameCard key={gamePiece.id} gameResult={gamePiece} />
                     ))}
                 </Grid>
                 <Pagination

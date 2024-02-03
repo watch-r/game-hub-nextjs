@@ -1,4 +1,4 @@
-export type Game = {
+export type Gamep = {
     id: number;
     name: string;
     background_image: string;
@@ -32,9 +32,10 @@ export type GameById = {
     released: string;
     background_image_additional: string;
     metacritic: number;
+    description_raw: string;
     rating: number;
     ratings: ratings[];
-    platforms: Platformo[];
+    parent_platforms: { platform: Platform }[]
     playtime: string;
 };
 export type Platformo = {

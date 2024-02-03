@@ -9,6 +9,7 @@ import { ModeToggle } from "./ui/toggleMode";
 import { Suspense } from "react";
 
 const NavBar = () => {
+    const currentPath = usePathname();
     return (
         <>
             <nav className='border-b-2 px-5 mb-1 py-3'>
@@ -20,7 +21,7 @@ const NavBar = () => {
                             </Link>
                             <Suspense>
                                 <NavLinks />
-                                <SearchInput />
+                                {currentPath=='/games'?<SearchInput />:''}
                             </Suspense>
                         </Flex>
                         <Flex align={"center"} gap={"2"}>

@@ -1,16 +1,46 @@
-import { Box, Heading, Text } from "@radix-ui/themes";
+"use client";
+import { Badge, Box, Button, Heading, Text } from "@radix-ui/themes";
+import { useEffect, useState } from "react";
 type Props = {
     description: string;
 };
 const Descriptions = ({ description }: Props) => {
+    const maxLength = 300;
+    const [isExpanded, setIsExpanded] = useState(false);
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
     return (
         <Box>
             <Heading size={"3"}>Description</Heading>
-            <Text
-                dangerouslySetInnerHTML={{
-                    __html: description,
-                }}
-            />
+            {description.length <= maxLength ? (
+                <Text
+                    dangerouslySetInnerHTML={{
+                        __html: description,
+                    }}
+                />
+            ) : (
+                <>
+                    <Text
+                        dangerouslySetInnerHTML={{
+                            __html: isExpanded
+                                ? description
+                                : `${description.slice(0, maxLength)}...`,
+                        }}
+                    />
+                    {isClient && (
+                        <Badge
+                            radius='full'
+                            onClick={() => setIsExpanded(!isExpanded)}
+                        >
+                            {isExpanded ? "Read Less" : "Read More"}
+                        </Badge>
+                    )}
+                </>
+            )}
         </Box>
     );
 };

@@ -13,7 +13,7 @@ import { IconType } from "react-icons/lib";
 import { MdPhoneIphone } from "react-icons/md";
 import { SiNintendogamecube } from "react-icons/si";
 
-const PlatformIconList = ({ platforms }: { platforms: Platform[] }) => {
+const PlatformIconList = ({ platforms }: { platforms?: Platform[] }) => {
     const iconsMap: { [key: string]: IconType } = {
         pc: FaWindows,
         playstation: FaPlaystation,
@@ -27,7 +27,7 @@ const PlatformIconList = ({ platforms }: { platforms: Platform[] }) => {
     };
     return (
         <Flex direction={"row"} gap={"2"} p={"2"}>
-            {platforms
+            {platforms && platforms
                 .filter((platform) => iconsMap[platform.slug])
                 .map((platform) => {
                     const IconComponent = iconsMap[platform.slug];

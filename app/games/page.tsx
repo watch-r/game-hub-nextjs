@@ -7,6 +7,8 @@ import PlatformGameFilterList from "./_components/PlatformGameFilterList";
 import SortSelector from "./_components/SortSelector";
 import ResetButton from "./_components/resetButton";
 import { Suspense } from "react";
+import GenreListSkeleton from "./_components/GenreListSkeleton";
+import GameGridSkeleton from "./_components/GameGridSkeleton";
 
 type MySearchProps = {
     searchParams: {
@@ -28,7 +30,7 @@ const GameListPage = async ({ searchParams }: MySearchProps) => {
         <Container>
             <Grid columns={{ initial: "1", sm: "7" }} gap={"2"}>
                 <Box className=' hidden md:block md:col-span-2 px-3 py-3 overflow-auto'>
-                    <Suspense fallback={<div>Loading...</div>}>
+                    <Suspense fallback={<GenreListSkeleton />}>
                         <GenreList
                             genres={genreResults}
                             count={count}
@@ -46,7 +48,7 @@ const GameListPage = async ({ searchParams }: MySearchProps) => {
                             <SortSelector />
                             <ResetButton />
                         </Flex>
-                        <Suspense fallback={<div>Loading...</div>}>
+                        <Suspense fallback={<GameGridSkeleton />}>
                             <GameGrid
                                 platform={searchParams.platform}
                                 genre={searchParams.genres}

@@ -24,14 +24,14 @@ const GameDetailsPage = async ({ params }: MyPageProps) => {
     // Promise.all()
     return (
         <Container p={"2"}>
+            <Heading size={"8"}>{game.name}</Heading>
+            <Separator my='2' size='4' />
             <Grid columns={{ initial: "1", sm: "7" }} gap={"3"}>
                 <Box className='md:col-span-4'>
                     <Flex direction={"column"} gap={"3"}>
-                        <Heading size={"8"}>{game.name}</Heading>
-                        <Separator my='2' size='4' />
                         <TopBadge
                             released_at={game.released}
-                            platforms={game.platforms}
+                            parent_platforms={game.parent_platforms}
                             playtime={game.playtime}
                             score={game.metacritic}
                         />

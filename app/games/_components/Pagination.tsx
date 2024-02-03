@@ -22,7 +22,11 @@ const Pagination = ({ itemCount, pageSize, currentpage }: MyPageProps) => {
     // Api has only 9999 games limit for filtering,
     // last two of next three line of codes  are used to handle this situation.
     if (pageCount <= 1) return null; // If there is only one
-    if (searchParams.has("platform") || searchParams.has("genres"))
+    if (
+        searchParams.has("platform") ||
+        searchParams.has("genres") ||
+        searchParams.has("search")
+    )
         if (pageCount > 1112) pageCount = 1111;
 
     const changePage = (page: number) => {

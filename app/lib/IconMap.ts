@@ -77,4 +77,5 @@ export const iconsMap: { [key: string]: IconType } = {
     jaguar: SiAtari,
     "game-gear": SiSega,
     neogeo: SiNeovim,
+    web:FaGlobe
 };
