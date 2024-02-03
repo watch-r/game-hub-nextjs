@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { PiGameControllerDuotone } from "react-icons/pi";
 import SearchInput from "./SearchInput";
 import { ModeToggle } from "./ui/toggleMode";
+import { Suspense } from "react";
 
 const NavBar = () => {
     return (
@@ -17,8 +18,10 @@ const NavBar = () => {
                             <Link href='/'>
                                 <PiGameControllerDuotone size={"2rem"} />
                             </Link>
-                            <NavLinks />
-                            <SearchInput />
+                            <Suspense>
+                                <NavLinks />
+                                <SearchInput />
+                            </Suspense>
                         </Flex>
                         <Flex align={"center"} gap={"2"}>
                             <ModeToggle />

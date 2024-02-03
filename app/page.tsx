@@ -12,7 +12,6 @@ export default function Home() {
                 <Flex direction='column' gap={"3"} width={"min-content"}>
                     <Button>Button radix ui check</Button>
                     <Botton>Button shadcn ui check</Botton>
-                    <SearchInput />
                 </Flex>
             </Container>
         </>
