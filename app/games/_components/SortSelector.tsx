@@ -45,9 +45,8 @@ const SortSelector = () => {
         },
     ];
     return (
-        
         <Select.Root
-            defaultValue={"all"||searchParams.get("sortOrder")}
+            defaultValue={"all" || searchParams.get("sortOrder")}
             onValueChange={handleValueChange}
         >
             <Select.Trigger variant='soft' />

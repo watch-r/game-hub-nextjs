@@ -6,6 +6,7 @@ import GenreList from "./_components/GenreList";
 import PlatformGameFilterList from "./_components/PlatformGameFilterList";
 import SortSelector from "./_components/SortSelector";
 import ResetButton from "./_components/resetButton";
+import { Suspense } from "react";
 
 type MySearchProps = {
     searchParams: {
@@ -27,11 +28,13 @@ const GameListPage = async ({ searchParams }: MySearchProps) => {
         <Container>
             <Grid columns={{ initial: "1", sm: "7" }} gap={"2"}>
                 <Box className=' hidden md:block md:col-span-2 px-3 py-3 overflow-auto'>
-                    <GenreList
-                        genres={genreResults}
-                        count={count}
-                        selectedGenre={searchParams.genres}
-                    />
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <GenreList
+                            genres={genreResults}
+                            count={count}
+                            selectedGenre={searchParams.genres}
+                        />
+                    </Suspense>
                 </Box>
                 <Box className='md:col-span-5' px={"3"}>
                     <Flex gap={"2"} p={"2"} direction={"column"}>
@@ -43,13 +46,15 @@ const GameListPage = async ({ searchParams }: MySearchProps) => {
                             <SortSelector />
                             <ResetButton />
                         </Flex>
-                        <GameGrid
-                            platform={searchParams.platform}
-                            genre={searchParams.genres}
-                            pagesss={searchParams.page}
-                            order={searchParams.sortOrder}
-                            search={searchParams.search}
-                        />
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <GameGrid
+                                platform={searchParams.platform}
+                                genre={searchParams.genres}
+                                pagesss={searchParams.page}
+                                order={searchParams.sortOrder}
+                                search={searchParams.search}
+                            />
+                        </Suspense>
                     </Flex>
                 </Box>
             </Grid>

@@ -73,8 +73,9 @@ export async function fetchGenreByIds(id: string) {
             },
         }
     );
-    if (!response.ok) notFound;
-    return response.json();
+    // if (!response.ok) notFound;
+    const results = response.json();
+    return results;
 }
 
 export async function fetchGameById(data: string) {
