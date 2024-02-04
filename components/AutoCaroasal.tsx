@@ -10,9 +10,10 @@ import { Gamep } from "@/app/lib/TypeDefinations";
 
 type Props = {
     games: any;
+    speed: number;
 };
 
-export default function SimpleSlider({ games }: Props) {
+export default function SimpleSlider({ games,speed }: Props) {
     const getRandomImageUrl = () => {
         const randomImageWidth = Math.floor(Math.random() * 800) + 400; // Random width between 400 and 1200
         const randomImageHeight = Math.floor(Math.random() * 800) + 400; // Random height between 400 and 1200
@@ -22,7 +23,7 @@ export default function SimpleSlider({ games }: Props) {
         infinite: true,
         slidesToShow: 4,
         autoplay: true,
-        autoplaySpeed: 2000,
+        autoplaySpeed: speed,
         speed: 500,
         responsive: [
             {
