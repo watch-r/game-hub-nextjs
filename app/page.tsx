@@ -1,6 +1,7 @@
 import SimpleSlider from "@/components/AutoCaroasal";
 import { Container, Flex, Heading } from "@radix-ui/themes";
 import { fetchGamesWithParameters } from "./lib/data";
+import PieChartEx from "./games/[id]/_components/PieChart";
 
 export default async function Home() {
     const { results } = await fetchGamesWithParameters("6");

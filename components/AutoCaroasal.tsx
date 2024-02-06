@@ -1,12 +1,10 @@
 "use client";
-import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 
-import React from "react";
-import Slider from "react-slick";
-import { Card, CardContent } from "./ui/card";
 import GameCard from "@/app/games/_components/GameCard";
 import { Gamep } from "@/app/lib/TypeDefinations";
+import Slider from "react-slick";
 
 type Props = {
     games: any;
@@ -14,11 +12,6 @@ type Props = {
 };
 
 export default function SimpleSlider({ games,speed }: Props) {
-    const getRandomImageUrl = () => {
-        const randomImageWidth = Math.floor(Math.random() * 800) + 400; // Random width between 400 and 1200
-        const randomImageHeight = Math.floor(Math.random() * 800) + 400; // Random height between 400 and 1200
-        return `https://via.placeholder.com/${randomImageWidth}x${randomImageHeight}`;
-    };
     var settings = {
         infinite: true,
         slidesToShow: 4,
