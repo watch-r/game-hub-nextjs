@@ -85,7 +85,6 @@ export async function fetchGameById(data: string) {
             method: "GET",
             headers: {
                 accept: "application/json",
-                cache: "force-cache",
             },
         }
     );
