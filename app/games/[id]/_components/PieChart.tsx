@@ -1,6 +1,5 @@
 "use client";
 import { ratings } from "@/app/lib/TypeDefinations";
-import { BorderAllIcon } from "@radix-ui/react-icons";
 import { Text } from "@radix-ui/themes";
 import {
     Cell,
@@ -8,8 +7,7 @@ import {
     Pie,
     PieChart,
     ResponsiveContainer,
-    Sector,
-    Tooltip,
+    Tooltip
 } from "recharts";
 
 type Props = {
