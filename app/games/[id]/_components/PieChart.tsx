@@ -37,7 +37,7 @@ const PieChartEx = ({ ratings }: Props) => {
                         <Cell
                             key={rating.id}
                             fill={COLORS[index % COLORS.length]}
-                            name={rating.title}
+                            name={rating.title+": "+rating.count}
                         />
                     ))}
                 </Pie>

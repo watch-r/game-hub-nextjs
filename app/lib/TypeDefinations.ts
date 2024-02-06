@@ -35,7 +35,7 @@ export type GameById = {
     description_raw: string;
     rating: number;
     ratings: ratings[];
-    parent_platforms: { platform: Platform }[]
+    parent_platforms: { platform: Platform }[];
     playtime: string;
 };
 export type Platformo = {
@@ -43,3 +43,11 @@ export type Platformo = {
     released_at?: string;
     requirements?: string;
 };
+
+export type ScreenShots = {
+    count: number;
+    results: { id: number; image: string }[];
+};
+// export type ScreenShot = {
+//     image: string;
+// };

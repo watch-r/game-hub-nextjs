@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { ScreenShots } from "./TypeDefinations";
 export async function fetchGames() {
     const response = await fetch(
         `${process.env.RAWG_API_BASE_URL}/games?key=${process.env.RAWG_API_KEY}`,
@@ -104,4 +105,17 @@ export async function fetchPlatforms() {
     );
     const { count, results } = await response.json();
     return results;
+}
+export async function fetchScreenShots(id:string) {
+    const response = await fetch(
+        `${process.env.RAWG_API_BASE_URL}/games/${id}/screenshots?key=${process.env.RAWG_API_KEY}`,
+        {
+            method: "GET",
+            headers: {
+                accept: "application/json",
+            },
+        }
+    );
+    const result:ScreenShots = await response.json();
+    return result;
 }
