@@ -18,6 +18,7 @@ import PieChartEx from "./_components/PieChart";
 import ShowScreenShots from "./_components/ShowScreenShots";
 import TextOverImageComponent from "./_components/TextOverImageComponent";
 import TopBadge from "./_components/TopBadge";
+import WhereToBuy from "./_components/WhereToBuy";
 
 // const PieChartEx = dynamic(() => import("./_components/PieChart"), {
 //     ssr: false,
@@ -42,7 +43,7 @@ const GameDetailsPage = async ({ params }: MyPageProps) => {
                 }
             />
             <Separator my="1" size="4" />
-            <Heading size={"8"}>About</Heading>
+            <Heading size={"8"} className="px-4">About</Heading>
             <Grid
                 columns={{ initial: "1", sm: "7", md: "9" }}
                 gap={"3"}
@@ -59,7 +60,7 @@ const GameDetailsPage = async ({ params }: MyPageProps) => {
                         <Descriptions description={game.description} />
                         {game.rating}
                         <div className="px-5 content-center">
-                            <Heading>Game Screen Shots</Heading>
+                            <Heading>Game Screenshots</Heading>
                             <ShowScreenShots
                                 screenShotResults={screenShotfetches}
                             />
@@ -89,6 +90,7 @@ const GameDetailsPage = async ({ params }: MyPageProps) => {
                                 <PieChartEx ratings={game.ratings} />
                             </Suspense>
                         </Card>
+                        <WhereToBuy id={params.id} />
                     </Flex>
                 </Box>
             </Grid>

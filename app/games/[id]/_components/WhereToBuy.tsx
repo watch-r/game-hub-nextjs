@@ -6,10 +6,11 @@ import { BsNintendoSwitch } from "react-icons/bs";
 import { RiXboxLine } from "react-icons/ri";
 import { SiEpicgames } from "react-icons/si";
 import Link from "next/link";
-import { Button, Flex } from "@radix-ui/themes";
+import { Button, Card, Flex, Grid, Heading } from "@radix-ui/themes";
+import { fetchWhereToBuyGame } from "@/app/lib/data";
 
 type MyPageProps = {
-    id?: string;
+    id: string;
 };
 
 const WhereToBuy = async ({ id }: MyPageProps) => {
@@ -37,22 +38,31 @@ const WhereToBuy = async ({ id }: MyPageProps) => {
         "9": <FaItchIo />,
         "11": <SiEpicgames />,
     };
-    const storeResults: GameStore = await fetch(
-        `https://api.rawg.io/api/games/55660/stores?key=f0c23de1296140f18266ab3e437d5736`
-    ).then((res) => res.json());
+    const storeResults: GameStore = await fetchWhereToBuyGame(id);
     return (
-        <Flex direction={"row"} gap={"5"}>
-            {storeResults.results.map((store: Store) => (
-                <Button key={store.id}>
-                    <Link href={store.url} >
-                        <Flex direction={"row"} align={"center"} gap={"1"}>
-                            {storeIcons[store.store_id.toString()]}
-                            {stores[store.store_id.toString()]}
-                        </Flex>
-                    </Link>
-                </Button>
-            ))}
-        </Flex>
+        <>
+            <Card>
+                <Heading size={"5"} className="p-2">
+                    Where To Buy
+                </Heading>
+                <Grid columns={"2"} gap={"1"}>
+                    {storeResults.results.length != 0? storeResults.results.map((store: Store) => (
+                        <Button key={store.id}>
+                            <Link href={store.url}>
+                                <Flex
+                                    direction={"row"}
+                                    align={"center"}
+                                    gap={"1"}
+                                >
+                                    {storeIcons[store.store_id.toString()]}
+                                    {stores[store.store_id.toString()]}
+                                </Flex>
+                            </Link>
+                        </Button>
+                    )): 'Store Unavailable.'}
+                </Grid>
+            </Card>
+        </>
     );
 };
 

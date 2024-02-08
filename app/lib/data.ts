@@ -119,3 +119,30 @@ export async function fetchScreenShots(id: string) {
 
     return fetchings;
 }
+
+export async function fetchWhereToBuyGame(id: string) {
+    const fetchings = await fetch(
+        `${process.env.RAWG_API_BASE_URL}/games/${id}/stores?key=${process.env.RAWG_API_KEY}`,
+        {
+            method: "GET",
+            headers: {
+                accept: "application/json",
+            },
+        }
+    ).then((res) => res.json());
+
+    return fetchings;
+}
+
+export async function fetchGameMovies(id: string) {
+    const movies = await fetch(
+        `${process.env.RAWG_API_BASE_URL}/games/${id}/movies?key=${process.env.RAWG_API_KEY}`,
+        {
+            method: "GET",
+            headers: {
+                accept: "application/json",
+            },
+        }
+    ).then((res) => res.json());
+    return movies;
+}

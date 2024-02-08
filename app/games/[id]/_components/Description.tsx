@@ -1,5 +1,5 @@
 "use client";
-import { Badge, Box, Button, Heading, Text } from "@radix-ui/themes";
+import { Badge, Box, Button, Card, Heading, Text } from "@radix-ui/themes";
 import { useEffect, useState } from "react";
 type Props = {
     description: string;
@@ -14,7 +14,7 @@ const Descriptions = ({ description }: Props) => {
     }, []);
 
     return (
-        <Box>
+        <Card>
             <Heading size={"3"}>Description</Heading>
             {description.length <= maxLength ? (
                 <Text
@@ -41,7 +41,7 @@ const Descriptions = ({ description }: Props) => {
                     )}
                 </>
             )}
-        </Box>
+        </Card>
     );
 };
 
