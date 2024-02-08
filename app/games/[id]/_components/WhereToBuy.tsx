@@ -43,8 +43,8 @@ const WhereToBuy = async ({ id }: MyPageProps) => {
     return (
         <Flex direction={"row"} gap={"5"}>
             {storeResults.results.map((store: Store) => (
-                <Button>
-                    <Link href={store.url} key={store.id}>
+                <Button key={store.id}>
+                    <Link href={store.url} >
                         <Flex direction={"row"} align={"center"} gap={"1"}>
                             {storeIcons[store.store_id.toString()]}
                             {stores[store.store_id.toString()]}

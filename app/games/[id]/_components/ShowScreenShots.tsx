@@ -68,7 +68,7 @@ const ShowScreenShots = ({ screenShotResults }: Props) => {
                           </div>
                       ))
                     : emptyImages.map((id) => (
-                          <div className="m-3 p-3">
+                          <div key={id} className="m-3 p-3">
                               <Image
                                   src={"/stock_image.jpeg"}
                                   alt="image of..."

@@ -1,0 +1,28 @@
+{
+    "ratings": [
+        {
+            "id": 5,
+            "title": "exceptional",
+            "count": 0,
+            "percent": 0
+        },
+        {
+            "id": 4,
+            "title": "recommended",
+            "count": 0,
+            "percent": 0
+        },
+        {
+            "id": 3,
+            "title": "meh",
+            "count": 0,
+            "percent": 0
+        },
+        {
+            "id": 1,
+            "title": "skip",
+            "count": 0,
+            "percent": 0
+        }
+    ]
+}

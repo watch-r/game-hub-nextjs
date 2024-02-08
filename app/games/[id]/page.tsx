@@ -31,10 +31,8 @@ const GameDetailsPage = async ({ params }: MyPageProps) => {
     // await delay(2000);
     const game: GameById = await fetchGameById(params.id);
     const screenShotfetches = await fetchScreenShots(params.id);
-    console.log(screenShotfetches);
     return (
         <Container p={"2"}>
-            {/* <AspectRatio ratio={16 / 9}> */}
             <TextOverImageComponent
                 name={game.name}
                 url={
@@ -43,7 +41,6 @@ const GameDetailsPage = async ({ params }: MyPageProps) => {
                         : "/stock_image5.jpeg"
                 }
             />
-            {/* </AspectRatio> */}
             <Separator my="1" size="4" />
             <Heading size={"8"}>About</Heading>
             <Grid
