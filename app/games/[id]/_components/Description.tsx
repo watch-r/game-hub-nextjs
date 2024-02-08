@@ -33,7 +33,7 @@ const Descriptions = ({ description }: Props) => {
                     />
                     {isClient && (
                         <Badge
-                            radius='full'
+                            radius="full"
                             onClick={() => setIsExpanded(!isExpanded)}
                         >
                             {isExpanded ? "Read Less" : "Read More"}

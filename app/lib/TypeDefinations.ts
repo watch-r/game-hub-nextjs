@@ -51,3 +51,13 @@ export type ScreenShots = {
 // export type ScreenShot = {
 //     image: string;
 // };
+export type GameStore = {
+    count: number;
+    results: Store[];
+};
+export type Store = {
+    id: number;
+    game_id: number;
+    store_id: number;
+    url: string;
+};

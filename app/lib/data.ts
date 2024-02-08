@@ -106,8 +106,8 @@ export async function fetchPlatforms() {
     const { count, results } = await response.json();
     return results;
 }
-export async function fetchScreenShots(id:string) {
-    const response = await fetch(
+export async function fetchScreenShots(id: string) {
+    const fetchings = await fetch(
         `${process.env.RAWG_API_BASE_URL}/games/${id}/screenshots?key=${process.env.RAWG_API_KEY}`,
         {
             method: "GET",
@@ -115,7 +115,7 @@ export async function fetchScreenShots(id:string) {
                 accept: "application/json",
             },
         }
-    );
-    const result:ScreenShots = await response.json();
-    return result;
+    ).then((res) => res.json());
+
+    return fetchings;
 }

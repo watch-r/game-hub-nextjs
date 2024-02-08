@@ -1,14 +1,30 @@
 import { Container } from "@radix-ui/themes";
 import TextOverImageComponent from "../games/[id]/_components/TextOverImageComponent";
+import Image from "next/image";
+import WhereToBuy from "../games/[id]/_components/WhereToBuy";
 
 const DashboardPage = () => {
     return (
         <Container>
+            {/* /public/icons/metascore.svg */}
+            <div>
+                <Image
+                    src="/icons/EarlyChildhood.svg"
+                    width={300}
+                    height={200}
+                    alt=""
+                />
+                <Image
+                    src="/icons/EveryOne.svg"
+                    width={300}
+                    height={200}
+                    alt=""
+                />
+            </div>
+            {/* <WhereToBuy /> */}
             <Container className=""></Container>
             <TextOverImageComponent url={"/stock_image.jpeg"} name="Hola" />
-
             {/* <Heading size={'6'}>Lorem ipsum dolor sit amet.</Heading> */}
-
             <div>
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum
                 molestias quasi explicabo consequuntur perferendis aliquam

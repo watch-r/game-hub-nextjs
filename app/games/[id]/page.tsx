@@ -9,7 +9,7 @@ import {
     Flex,
     Grid,
     Heading,
-    Separator
+    Separator,
 } from "@radix-ui/themes";
 import Image from "next/image";
 import { Suspense } from "react";
@@ -30,16 +30,22 @@ type MyPageProps = {
 const GameDetailsPage = async ({ params }: MyPageProps) => {
     // await delay(2000);
     const game: GameById = await fetchGameById(params.id);
-    const screenShotResults = await fetchScreenShots(params.id);
+    const screenShotfetches = await fetchScreenShots(params.id);
+    console.log(screenShotfetches);
     return (
         <Container p={"2"}>
             {/* <AspectRatio ratio={16 / 9}> */}
             <TextOverImageComponent
                 name={game.name}
-                url={game.background_image}
+                url={
+                    game.background_image
+                        ? game.background_image
+                        : "/stock_image5.jpeg"
+                }
             />
             {/* </AspectRatio> */}
             <Separator my="1" size="4" />
+            <Heading size={"8"}>About</Heading>
             <Grid
                 columns={{ initial: "1", sm: "7", md: "9" }}
                 gap={"3"}
@@ -55,9 +61,10 @@ const GameDetailsPage = async ({ params }: MyPageProps) => {
                         />
                         <Descriptions description={game.description} />
                         {game.rating}
-                        <div className="px-5">
+                        <div className="px-5 content-center">
+                            <Heading>Game Screen Shots</Heading>
                             <ShowScreenShots
-                                screenShotResults={screenShotResults}
+                                screenShotResults={screenShotfetches}
                             />
                         </div>
                     </Flex>
