@@ -61,3 +61,16 @@ export type Store = {
     store_id: number;
     url: string;
 };
+
+export type Movies = {
+    count: number;
+    results: Videos[];
+};
+export type Videos = {
+    id: string;
+    name: string;
+    data: {
+        "480": string;
+        max: string;
+    };
+};

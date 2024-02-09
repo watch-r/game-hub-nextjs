@@ -1,13 +1,15 @@
-import { Container } from "@radix-ui/themes";
+import { Card, Container } from "@radix-ui/themes";
 import TextOverImageComponent from "../games/[id]/_components/TextOverImageComponent";
 import Image from "next/image";
 import WhereToBuy from "../games/[id]/_components/WhereToBuy";
 import VideoSlide from "../games/[id]/_components/VideoSlide";
 import { fetchGameMovies } from "../lib/data";
+import { Movies } from "../lib/TypeDefinations";
+import { Suspense } from "react";
 
 const DashboardPage = async () => {
-    const movies = await fetchGameMovies('3498')
-    console.log(movies)
+    const movies: Movies = await fetchGameMovies("3498");
+    // console.log(movies)
     return (
         <Container>
             {/* /public/icons/metascore.svg */}
@@ -26,8 +28,10 @@ const DashboardPage = async () => {
                 />
             </div>
             {/* <WhereToBuy /> */}
-            <Container className=""></Container>
-            <VideoSlide/>
+            <Card style={{ maxWidth: 400 }}>
+                <Suspense fallback="Loading..."></Suspense>
+                <VideoSlide movieResults={movies.results} imageUrl={"/stock_image2.png"} />
+            </Card>
             <TextOverImageComponent url={"/stock_image.jpeg"} name="Hola" />
             {/* <Heading size={'6'}>Lorem ipsum dolor sit amet.</Heading> */}
             <div>
