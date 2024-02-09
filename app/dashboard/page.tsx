@@ -1,14 +1,39 @@
-import { Container } from "@radix-ui/themes";
+import { Card, Container } from "@radix-ui/themes";
 import TextOverImageComponent from "../games/[id]/_components/TextOverImageComponent";
+import Image from "next/image";
+import WhereToBuy from "../games/[id]/_components/WhereToBuy";
+import VideoSlide from "../games/[id]/_components/VideoSlide";
+import { fetchGameMovies } from "../lib/data";
+import { Movies } from "../lib/TypeDefinations";
+import { Suspense } from "react";
 
-const DashboardPage = () => {
+const DashboardPage = async () => {
+    const movies: Movies = await fetchGameMovies("3498");
+    // console.log(movies)
     return (
         <Container>
-            <Container className=""></Container>
+            {/* /public/icons/metascore.svg */}
+            <div>
+                <Image
+                    src="/icons/EarlyChildhood.svg"
+                    width={300}
+                    height={200}
+                    alt=""
+                />
+                <Image
+                    src="/icons/EveryOne.svg"
+                    width={300}
+                    height={200}
+                    alt=""
+                />
+            </div>
+            {/* <WhereToBuy /> */}
+            <Card style={{ maxWidth: 400 }}>
+                <Suspense fallback="Loading..."></Suspense>
+                <VideoSlide movieResults={movies.results} imageUrl={"/stock_image2.png"} />
+            </Card>
             <TextOverImageComponent url={"/stock_image.jpeg"} name="Hola" />
-
             {/* <Heading size={'6'}>Lorem ipsum dolor sit amet.</Heading> */}
-
             <div>
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum
                 molestias quasi explicabo consequuntur perferendis aliquam

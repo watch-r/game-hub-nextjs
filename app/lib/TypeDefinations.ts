@@ -51,3 +51,26 @@ export type ScreenShots = {
 // export type ScreenShot = {
 //     image: string;
 // };
+export type GameStore = {
+    count: number;
+    results: Store[];
+};
+export type Store = {
+    id: number;
+    game_id: number;
+    store_id: number;
+    url: string;
+};
+
+export type Movies = {
+    count: number;
+    results: Videos[];
+};
+export type Videos = {
+    id: string;
+    name: string;
+    data: {
+        "480": string;
+        max: string;
+    };
+};

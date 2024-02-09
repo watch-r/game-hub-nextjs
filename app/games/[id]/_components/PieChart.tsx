@@ -1,5 +1,6 @@
 "use client";
 import { ratings } from "@/app/lib/TypeDefinations";
+import ratingStatic from "@/app/lib/ratingsStatic";
 import { Text } from "@radix-ui/themes";
 import {
     Cell,
@@ -7,7 +8,7 @@ import {
     Pie,
     PieChart,
     ResponsiveContainer,
-    Tooltip
+    Tooltip,
 } from "recharts";
 
 type Props = {
@@ -16,32 +17,34 @@ type Props = {
 
 const PieChartEx = ({ ratings }: Props) => {
     const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
-    if (ratings.length == 0)
-        return (
-            <div className="justify-center">
-                <Text align={'center'}>No Raings Found</Text>
-            </div>
-        );
     return (
         <ResponsiveContainer width={"100%"} height={400}>
             <PieChart>
                 <Pie
-                    data={ratings}
+                    data={ratings.length !== 0 ? ratings : ratingStatic}
                     innerRadius={"40%"}
                     outerRadius={"60%"}
                     paddingAngle={5}
                     dataKey="percent"
-                    label
+                    label={ratings.length !== 0}
                 >
-                    {ratings.map((rating, index) => (
-                        <Cell
-                            key={rating.id}
-                            fill={COLORS[index % COLORS.length]}
-                            name={rating.title+": "+rating.count}
-                        />
-                    ))}
+                    {ratings.length !== 0
+                        ? ratings.map((rating, index) => (
+                              <Cell
+                                  key={rating.id}
+                                  fill={COLORS[index % COLORS.length]}
+                                  name={rating.title + ": " + rating.count}
+                              />
+                          ))
+                        : ratingStatic.map((rating, index) => (
+                              <Cell
+                                  key={rating.id}
+                                  fill={COLORS[index % COLORS.length]}
+                                  name={rating.title + ": " + rating.count}
+                              />
+                          ))}
                 </Pie>
-                <Tooltip />
+                {ratings.length !== 0 && <Tooltip />}
                 <Legend />
             </PieChart>
         </ResponsiveContainer>
