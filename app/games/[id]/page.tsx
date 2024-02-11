@@ -25,10 +25,6 @@ import TopBadge from "./_components/TopBadge";
 import WhereToBuy from "./_components/WhereToBuy";
 import VideoSlide from "./_components/VideoSlide";
 
-// const PieChartEx = dynamic(() => import("./_components/PieChart"), {
-//     ssr: false,
-// });
-
 type MyPageProps = {
     params: { id: string };
 };

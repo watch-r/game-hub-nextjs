@@ -45,8 +45,9 @@ const VideoSlide = ({ movieResults, imageUrl }: MyPageProps) => {
                                 muted
                                 playsInline
                                 controls
-                                preload="metadata"
-                                autoPlay
+                                preload="none"
+                                // autoPlay
+                                poster={item.preview}
                                 className="rounded-md p-1"
                             >
                                 <source src={item.data[480]} type="video/mp4" />

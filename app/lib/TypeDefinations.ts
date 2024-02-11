@@ -69,6 +69,7 @@ export type Movies = {
 export type Videos = {
     id: string;
     name: string;
+    preview:string
     data: {
         "480": string;
         max: string;
