@@ -59,4 +59,6 @@ Feel free to fork, contribute, or reach out if you'd like to build something tog
 ## 📜 License
 This project is licensed under the MIT License.
 
+---
 Built with care by Mahmud Alam — AI enthusiast, full-stack developer, and lifelong learner 🌙
+---
