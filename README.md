@@ -30,9 +30,12 @@ cd game-hub-nextjs
 npm install
 
 # Start the dev server
-npm run dev 
-Visit http://localhost:3000 to explore locally.
+npm run dev
 ```
+Visit http://localhost:3000 to explore locally.
+or
+Visit https://game-hub-nextjs.vercel.app/games to explore.
+
 ##  🗂️ Folder Structure
 ├── app/              # App router pages
 ├── components/       # Reusable UI components
@@ -41,7 +44,7 @@ Visit http://localhost:3000 to explore locally.
 ├── public/           # Static assets
 ├── videos/           # Game previews
 
-##🧪 Development Notes
+## 🧪 Development Notes
 Fonts are loaded via next/font for performance.
 
 Prisma setup is ready for migration and scaling.
@@ -50,10 +53,10 @@ UI is fully responsive and theme-aware.
 
 Easily extendable for game reviews, user auth, or API integration.
 
-##🤝 Collaboration
+## 🤝 Collaboration
 Feel free to fork, contribute, or reach out if you'd like to build something together. I value clean code, ethical design, and joyful learning.
 
-##📜 License
+## 📜 License
 This project is licensed under the MIT License.
 
 Built with care by Mahmud Alam — AI enthusiast, full-stack developer, and lifelong learner 🌙
