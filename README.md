@@ -1,64 +1,36 @@
-# 🎮 Game Hub - Next.js
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-A modern, responsive Game Hub web app built with **Next.js**, **Tailwind CSS**, and **Prisma**. Designed to explore and showcase video games with style and speed.
+## Getting Started
 
-## ✨ Overview
-
-This project is part of my portfolio as a developer passionate about scalable, interactive web experiences. It demonstrates:
-
-- Clean architecture using **Next.js App Router**
-- Elegant UI with **Tailwind CSS**
-- Backend integration via **Prisma ORM**
-- Optimized media handling and font loading
-- Modular, reusable components for rapid development
-
-## 🧰 Tech Stack
-
-| Frontend       | Backend       | Styling        | Deployment |
-|----------------|---------------|----------------|------------|
-| Next.js 14     | Prisma ORM    | Tailwind CSS   | Vercel     |
-| React + TS     | SQLite (dev)  | Dark/Light Mode|            |
-
-## 🚀 Getting Started
+First, run the development server:
 
 ```bash
-# Clone the repo
-git clone https://github.com/watch-r/game-hub-nextjs.git
-cd game-hub-nextjs
-
-# Install dependencies
-npm install
-
-# Start the dev server
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
-Visit http://localhost:3000 to explore locally.
-or
-Visit https://game-hub-nextjs.vercel.app/games to explore.
 
-##  🗂️ Folder Structure
-├── app/              # App router pages
-├── components/       # Reusable UI components
-├── lib/              # Utility functions
-├── prisma/           # ORM setup
-├── public/           # Static assets
-├── videos/           # Game previews
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 🧪 Development Notes
-Fonts are loaded via next/font for performance.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-Prisma setup is ready for migration and scaling.
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-UI is fully responsive and theme-aware.
+## Learn More
 
-Easily extendable for game reviews, user auth, or API integration.
+To learn more about Next.js, take a look at the following resources:
 
-## 🤝 Collaboration
-Feel free to fork, contribute, or reach out if you'd like to build something together. I value clean code, ethical design, and joyful learning.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## 📜 License
-This project is licensed under the MIT License.
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
----
-Built with care by Mahmud Alam — AI enthusiast, full-stack developer, and lifelong learner 🌙
----
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
