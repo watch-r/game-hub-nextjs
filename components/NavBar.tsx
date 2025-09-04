@@ -5,15 +5,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PiGameControllerDuotone } from "react-icons/pi";
 import SearchInput from "./SearchInput";
-import { ModeToggle } from "./ui/toggleMode";
+// import { ModeToggle } from "./ui/toggleMode"
 import { Suspense } from "react";
+import { ThemeToggle } from "./ui/toggleMode";
 
 const NavBar = () => {
     const currentPath = usePathname();
     return (
         <>
             <nav className='border-b-2 px-5 mb-1 py-3'>
-                <Container>
+                <div className="">
                     <Flex gap='4' direction={"row"} justify={"between"}>
                         <Flex align={"center"} gap={"2"}>
                             <Link href='/'>
@@ -21,15 +22,15 @@ const NavBar = () => {
                             </Link>
                             <Suspense>
                                 <NavLinks />
-                                {currentPath=='/games'?<SearchInput />:''}
+                                {/* {currentPath=='/games'?<SearchInput />:''} */}
                             </Suspense>
                         </Flex>
                         <Flex align={"center"} gap={"2"}>
-                            <ModeToggle />
+                            <ThemeToggle />
                             <Avatar fallback='?' radius='full' />
                         </Flex>
                     </Flex>
-                </Container>
+                </div>
             </nav>
         </>
     );
