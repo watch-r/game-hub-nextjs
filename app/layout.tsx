@@ -1,16 +1,20 @@
-import NavBar from "@/components/NavBar";
-import { ThemeProvider } from "@/components/theme-provider";
-import { Theme } from "@radix-ui/themes";
-import "@radix-ui/themes/styles.css";
 import type { Metadata } from "next";
-import { Albert_Sans as MainFont } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import "./theme-config.css";
+import { ThemeProvider } from "@/components/theme-provider";
 
-const mainFont = MainFont({ subsets: ["latin"], variable: "--font-main" });
+const geistSans = Geist({
+    variable: "--font-geist-sans",
+    subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+    variable: "--font-geist-mono",
+    subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
-    title: "Video Games",
+    title: "EyeSpy - killer Game",
     description: "All the Games of the World (using rawg api)",
 };
 
@@ -20,22 +24,16 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang='en'>
-            <body className={mainFont.variable}>
+        <html lang="en" suppressHydrationWarning>
+            <body
+                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+            >
                 <ThemeProvider
-                    attribute='class'
+                    attribute="class"
+                    defaultTheme="system"
                     enableSystem
                 >
-                    <Theme
-                        accentColor='crimson'
-                        grayColor='sage'
-                        radius='large'
-                    >
-                        {" "}
-                        <NavBar />
-                        <main>{children}</main>
-                        {/* <ThemePanel/> */}
-                    </Theme>
+                    {children}
                 </ThemeProvider>
             </body>
         </html>

@@ -1,23 +1,26 @@
 "use client";
 
-import { IoMoonOutline, IoSunnyOutline } from "react-icons/io5";
+import * as React from "react";
+import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { Button } from "@radix-ui/themes";
 
-export function ModeToggle() {
+import { Button } from "@/components/ui/button";
+
+export function ThemeToggle() {
     const { theme, setTheme } = useTheme();
 
     return (
         <Button
-            radius="full"        
-            variant='surface'
-            className='h-8 w-8 '
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            variant="outline"
+            size="icon"
+            onClick={() =>
+                theme === "light" ? setTheme("dark") : setTheme("light")
+            }
+            className="relative"
         >
-            <IoSunnyOutline className='h-4 w-4 absolute rotate-0 scale-100 transition-all dark:scale-0 dark:-rotate-90' />
-            <IoMoonOutline className='h-4 w-4 absolute rotate-90 scale-0 transition-all dark:scale-100 dark:rotate-0' />
-            {/* <span className='sr-only'> Toogle theme</span> */}
+            <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+            <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
+            <span className="sr-only">Toggle theme</span>
         </Button>
     );
 }
-
