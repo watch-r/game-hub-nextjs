@@ -26,11 +26,11 @@ const GameCard = ({ game }: GameCArdProps) => {
                 className="object-cover "
             />
 
-            <div className="flex justify-between pl-2 pr-2">
+            <div className="flex justify-center space-x-1 pl-2 pr-2">
                 <h1>Critic Score: </h1>
                 <CriticScore score={game.metacritic} />
             </div>
-            <CardContent>
+            <CardContent className="text-center">
                 <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
                     {game.name}
                 </h4>

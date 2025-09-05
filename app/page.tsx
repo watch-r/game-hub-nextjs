@@ -23,27 +23,38 @@ export default function Home() {
             .then((data) => setGames(data.results || []));
     }, [genre]);
     return (
-        <div className="min-h-screen bg-background text-foreground">
+        <div className="min-h-screen bg-background text-foreground mb-10">
             {/* Hero Section */}
-            <section className="relative py-20 text-center h-auto">
+            <section className="relative py-16 md:py-24 lg:py-32 text-center h-auto">
+                {/* Background Image with Gradient Overlay */}
                 <div
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-5 dark:opacity-5"
+                    className="absolute inset-0 bg-cover bg-top bg-no-repeat"
                     style={{
-                        backgroundImage: `url('/andrey-metelev-DEuansgqjns-unsplash.jpg')`,
+                        backgroundImage: `url('/hero.png')`,
                     }}
                 />
-                <h1 className="text-4xl font-bold mb-4">
-                    Discover Your Next Favorite Game
-                </h1>
-                <div className="flex justify-center gap-2 max-w-md mx-auto">
-                    <div className="relative w-full">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600" />
-                        <Input
-                            placeholder="Search Game…"
-                            className="pl-13 rounded-full"
-                        />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/70" />
+
+                {/* Content */}
+                <div className="relative z-10 max-w-3xl mx-auto px-4">
+                    <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 animate-fadeIn">
+                        Discover Your Next Favorite Game
+                    </h1>
+
+                    {/* Search + Button */}
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-md mx-auto">
+                        <div className="relative w-full">
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+                            <Input
+                                placeholder="Search Game…"
+                                aria-label="Search games"
+                                className="pl-12 pr-4 py-3 rounded-full w-full text-base sm:text-lg"
+                            />
+                        </div>
+                        <Button className="rounded-full px-6 py-3 text-base sm:text-lg shadow-md hover:scale-105 transition">
+                            BROWSE ALL
+                        </Button>
                     </div>
-                    <Button className="rounded-full">Browse All</Button>
                 </div>
             </section>
 
