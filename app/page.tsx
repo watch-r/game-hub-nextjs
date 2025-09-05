@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Search } from "lucide-react";
 import Image from "next/image";
 import getCroppedImageUrl from "@/lib/image-url";
+import { Gamep } from "@/lib/Typedefinations";
 
 export default function Home() {
     const [games, setGames] = useState([]);
@@ -68,8 +69,11 @@ export default function Home() {
             <section className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-8">
                 <h2 className="text-2xl font-semibold mb-4">Top Games</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    {games.map((game: any) => (
-                        <Card key={game.id} className="overflow-hidden pt-0 mt-0">
+                    {games.map((game: Gamep) => (
+                        <Card
+                            key={game.id}
+                            className="overflow-hidden pt-0 mt-0"
+                        >
                             <Image
                                 width={1000}
                                 height={500}

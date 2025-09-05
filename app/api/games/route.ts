@@ -1,8 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const RAWG_API = process.env.RAWG_API_BASE_URL;
-const RAWG_KEY = process.env.RAWG_API_KEY;
-
 export async function GET(req: NextRequest) {
     try {
         const { searchParams } = new URL(req.url);
