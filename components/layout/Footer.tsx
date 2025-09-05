@@ -95,7 +95,7 @@ export function Footer() {
                     </div>
                 </div>
 
-                {/* Newsletter */}
+                {/* Newsletter -- future impentement  */}
                 <div>
                     <h3 className="font-semibold mb-3">Stay Updated</h3>
                     <div className="flex items-center gap-2 mb-4">
@@ -107,16 +107,28 @@ export function Footer() {
                         <Button className="rounded-full">Subscribe</Button>
                     </div>
                     <div className="flex gap-4 text-muted-foreground">
-                        <Link href="#" className="hover:text-primary transition">
+                        <Link
+                            href="#"
+                            className="hover:text-primary transition"
+                        >
                             🌐
                         </Link>
-                        <Link href="#" className="hover:text-primary transition">
+                        <Link
+                            href="#"
+                            className="hover:text-primary transition"
+                        >
                             🐦
                         </Link>
-                        <Link href="#" className="hover:text-primary transition">
+                        <Link
+                            href="#"
+                            className="hover:text-primary transition"
+                        >
                             📷
                         </Link>
-                        <Link href="#" className="hover:text-primary transition">
+                        <Link
+                            href="#"
+                            className="hover:text-primary transition"
+                        >
                             🎮
                         </Link>
                     </div>
@@ -125,7 +137,8 @@ export function Footer() {
 
             {/* Bottom Bar */}
             <div className="mt-10 border-t pt-6 text-center text-sm text-muted-foreground">
-                © {new Date().getFullYear()} MonStarZero Studio. All rights reserved.
+                © {new Date().getFullYear()} MonStarZero Studio. All rights
+                reserved.
             </div>
         </footer>
     );
