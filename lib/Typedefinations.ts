@@ -9,7 +9,7 @@ export type Gamep = {
     id: number;
     name: string;
     background_image: string;
-    released: String;
+    released: string;
     rating: number;
 };
 
