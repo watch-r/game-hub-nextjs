@@ -6,6 +6,8 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Search } from "lucide-react";
+import Image from "next/image";
+import getCroppedImageUrl from "@/lib/image-url";
 
 export default function Home() {
     const [games, setGames] = useState([]);
@@ -22,7 +24,7 @@ export default function Home() {
             {/* Hero Section */}
             <section className="relative py-20 text-center h-auto">
                 <div
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60 dark:opacity-5"
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-5 dark:opacity-5"
                     style={{
                         backgroundImage: `url('/andrey-metelev-DEuansgqjns-unsplash.jpg')`,
                     }}
@@ -32,10 +34,10 @@ export default function Home() {
                 </h1>
                 <div className="flex justify-center gap-2 max-w-md mx-auto">
                     <div className="relative w-full">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600" />
                         <Input
                             placeholder="Search Game…"
-                            className="pl-9 rounded-full"
+                            className="pl-13 rounded-full"
                         />
                     </div>
                     <Button className="rounded-full">Browse All</Button>
@@ -43,7 +45,7 @@ export default function Home() {
             </section>
 
             {/* Genre Tabs mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 */}
-            <section className="container py-8">
+            <section className="py-8 text-center h-auto">
                 <Tabs defaultValue="action" onValueChange={setGenre}>
                     {/* Center the tab list */}
                     <div className="flex justify-center">
@@ -52,7 +54,9 @@ export default function Home() {
                             <TabsTrigger value="adventure">
                                 Adventure
                             </TabsTrigger>
-                            <TabsTrigger value="rpg">RPG</TabsTrigger>
+                            <TabsTrigger value="role-playing-games-rpg">
+                                RPG
+                            </TabsTrigger>
                             <TabsTrigger value="indie">Indie</TabsTrigger>
                             <TabsTrigger value="shooter">Shooter</TabsTrigger>
                         </TabsList>
@@ -61,21 +65,31 @@ export default function Home() {
             </section>
 
             {/* Top Games */}
-            <section className="container py-8">
+            <section className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-8">
                 <h2 className="text-2xl font-semibold mb-4">Top Games</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {games.map((game: any) => (
-                        <Card key={game.id} className="overflow-hidden">
-                            <img
-                                src={game.background_image}
+                        <Card key={game.id} className="overflow-hidden pt-0 mt-0">
+                            <Image
+                                width={1000}
+                                height={500}
+                                src={
+                                    game.background_image
+                                        ? getCroppedImageUrl(
+                                              game.background_image
+                                          )
+                                        : "/stock-image.png"
+                                }
                                 alt={game.name}
-                                className="w-full h-40 object-cover"
+                                className="object-cover"
                             />
                             <CardContent>
                                 <h3 className="font-semibold">{game.name}</h3>
                             </CardContent>
                             <CardFooter className="flex justify-between items-center">
-                                <Badge variant="secondary">{game.rating}</Badge>
+                                <Badge variant="destructive">
+                                    {game.rating}
+                                </Badge>
                                 <span className="text-xs text-muted-foreground">
                                     {game.released}
                                 </span>
