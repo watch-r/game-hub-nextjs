@@ -3,7 +3,16 @@ export type Game = {
     name: string;
     background_image: string;
     parent_platforms: { platform: Platform }[];
+    platforms: { platform: Platform }[];
+    released: string;
+    rating: number;
+    ratings: { ratings: Ratings }[];
+    ratings_count: number;
     metacritic: number;
+    playtime: number;
+    updated: string;
+    saturated_color: string;
+    dominant_colors: string;
 };
 export type Gamep = {
     id: number;
@@ -26,7 +35,7 @@ export type Genre = {
     image_background: string;
 };
 
-export type ratings = {
+export type Ratings = {
     id: number;
     title: string;
     count: number;
@@ -42,7 +51,7 @@ export type GameById = {
     metacritic: number;
     description_raw: string;
     rating: number;
-    ratings: ratings[];
+    ratings: Ratings[];
     parent_platforms: { platform: Platform }[];
     playtime: string;
 };

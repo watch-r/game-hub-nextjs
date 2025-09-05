@@ -3,23 +3,25 @@ import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Search } from "lucide-react";
-import Image from "next/image";
-import getCroppedImageUrl from "@/lib/image-url";
-import { Gamep } from "@/lib/Typedefinations";
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+} from "@/components/ui/carousel";
+import { Game, Gamep } from "@/lib/Typedefinations";
+import Autoplay from "embla-carousel-autoplay";
+import GameCard from "@/components/GameCard";
 
 export default function Home() {
     const [games, setGames] = useState([]);
     const [genre, setGenre] = useState("action");
 
     useEffect(() => {
-        fetch(`/api/games?type=games&page_size=5&genre=${genre}`)
+        fetch(`/api/games?type=games&page_size=10&genre=${genre}`)
             .then((res) => res.json())
             .then((data) => setGames(data.results || []));
     }, [genre]);
-
     return (
         <div className="min-h-screen bg-background text-foreground">
             {/* Hero Section */}
@@ -66,42 +68,27 @@ export default function Home() {
             </section>
 
             {/* Top Games */}
-            <section className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-8">
-                <h2 className="text-2xl font-semibold mb-4">Top Games</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    {games.map((game: Gamep) => (
-                        <Card
+            <Carousel
+                opts={{
+                    align: "start",
+                    loop: true,
+                }}
+                plugins={[
+                    Autoplay({ delay: 2000 }), // 2 seconds
+                ]}
+                className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8"
+            >
+                <CarouselContent>
+                    {games.map((game: Game) => (
+                        <CarouselItem
                             key={game.id}
-                            className="overflow-hidden pt-0 mt-0"
+                            className="basis-1/1 md:basis-1/2 lg:basis-1/3"
                         >
-                            <Image
-                                width={1000}
-                                height={500}
-                                src={
-                                    game.background_image
-                                        ? getCroppedImageUrl(
-                                              game.background_image
-                                          )
-                                        : "/stock-image.png"
-                                }
-                                alt={game.name}
-                                className="object-cover"
-                            />
-                            <CardContent>
-                                <h3 className="font-semibold">{game.name}</h3>
-                            </CardContent>
-                            <CardFooter className="flex justify-between items-center">
-                                <Badge variant="destructive">
-                                    {game.rating}
-                                </Badge>
-                                <span className="text-xs text-muted-foreground">
-                                    {game.released}
-                                </span>
-                            </CardFooter>
-                        </Card>
+                            <GameCard game={game} />
+                        </CarouselItem>
                     ))}
-                </div>
-            </section>
+                </CarouselContent>
+            </Carousel>
         </div>
     );
 }
