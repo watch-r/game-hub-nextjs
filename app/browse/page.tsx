@@ -1,4 +1,3 @@
-// ❌ remove "use client"
 import { Genre } from "@/lib/Typedefinations";
 import GameGrid from "@/components/GameGrid";
 import GenreList from "@/components/GenreList";
@@ -14,7 +13,7 @@ interface SearchProps {
 }
 
 export default async function GameBrowsePage({ searchParams }: SearchProps) {
-    const { platform, genre, page, sortOrder, search } = searchParams;
+    const { platform, genre, page, sortOrder, search } = await searchParams;
 
     const res = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/games?type=genres`

@@ -42,13 +42,20 @@ const GameCard = ({ game }: GameCArdProps) => {
                         {game.released}
                     </span>
                 </div>
-                <div className="">
+                <div className="flex flex-row items-center gap-2">
                     {game.parent_platforms ? (
-                        <PlatformIconList
-                            platforms={game.parent_platforms.map(
-                                (p) => p.platform
+                        <>
+                            <PlatformIconList
+                                platforms={game.parent_platforms
+                                    .map((p) => p.platform)
+                                    .slice(0, 3)} // 👈 show only first 3
+                            />
+                            {game.parent_platforms.length > 3 && (
+                                <span className="text-xs font-semibold text-gray-500">
+                                    +{game.parent_platforms.length - 3}
+                                </span>
                             )}
-                        />
+                        </>
                     ) : (
                         <HelpCircle color="grey" />
                     )}
