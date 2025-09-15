@@ -28,7 +28,7 @@ const GamePagination = ({ itemCount, pageSize, currentpage }: MyPageProps) => {
     if (pageCount <= 1) return null;
     if (
         searchParams.has("platform") ||
-        searchParams.has("genres") ||
+        searchParams.has("genre") ||
         searchParams.has("search")
     )
         if (pageCount > 1112) pageCount = 1111;
