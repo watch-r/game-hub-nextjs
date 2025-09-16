@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "Gamu Hub | Your Next Favorite Game Discovery Page",
+    title: "Game Hub | Your Next Favorite Game Discovery Page",
     description:
         "A sleek, responsive game browser built with Next.js and, Tailwind CSS. With dynamic previews, dark mode, and clean architecture.",
 };

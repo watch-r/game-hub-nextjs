@@ -4,42 +4,72 @@ import { Genre } from "@/lib/Typedefinations";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Button } from "./ui/button";
 
 interface GenreListProps {
     genres: Genre[];
-    selectedGenre: string;
+    selectedGenre: string | null;
 }
 
 const GenreList = ({ genres, selectedGenre }: GenreListProps) => {
     const router = useRouter();
     const searchParams = useSearchParams();
 
-    const handleGenreClick = (genre: Genre) => {
-        const params = new URLSearchParams(searchParams.toString()); // ✅ clone current params
+    // Generic handler for updating any query params
+    const updateParams = (newParams: Record<string, string | null>) => {
+        const params = new URLSearchParams(searchParams.toString());
 
-        if (genre.slug) {
-            params.set("genre", genre.slug); // use "set" instead of append to replace
-            params.set("page", "1"); // reset pagination when changing genre
-        } else {
-            params.delete("genre");
-        }
+        Object.entries(newParams).forEach(([key, value]) => {
+            if (value === null) {
+                params.delete(key);
+            } else {
+                params.set(key, value);
+            }
+        });
 
         router.push(`/browse?${params.toString()}`);
     };
 
+    const handleGenreClick = (genre: Genre) => {
+        updateParams({
+            genre: genre.slug, // set selected genre
+            page: "1", // reset pagination
+        });
+    };
+
+    const handleResetFilters = () => {
+        updateParams({
+            genre: null,
+            platform: null,
+            sortOrder: null,
+            page: "1",
+            // optionally keep search if you want: search: searchParams.get("search")
+        });
+    };
+
     return (
         <div>
+            <div className="pl-1 flex flex-wrap items-center mb-0">
+                <Button
+                    variant={"outline"}
+                    onClick={handleResetFilters}
+                    className=" py-1 m-1 rounded-lg transition"
+                >
+                    Reset Filters
+                </Button>
+            </div>
+
             {genres.map((genre: Genre) => (
                 <div
                     key={genre.id}
-                    className={`rounded-lg overflow-hidden shadow-md bg-card hover:shadow-lg dark:shadow-accent p-3 m-3 transition flex justify-between flex-row items-center cursor-pointer ${
+                    className={`rounded-lg overflow-hidden shadow-md bg-card hover:shadow-lg dark:shadow-accent p-3 m-3 transition flex justify-between items-center cursor-pointer ${
                         selectedGenre === genre.slug
                             ? "border-2 border-blue-500"
                             : ""
                     }`}
                     onClick={() => handleGenreClick(genre)}
                 >
-                    <div className="flex flex-row space-x-2 items-center">
+                    <div className="flex items-center space-x-2">
                         <Avatar>
                             <AvatarImage
                                 src={genre.image_background}
