@@ -13,6 +13,7 @@ const DynamicHeading = ({ genres, platforms }: Props) => {
     const searchParams = useSearchParams();
     const genreSlug = searchParams.get("genre");
     const platformId = searchParams.get("platform");
+    const searchQuery = searchParams.get("search");
 
     const matchingPlatform =
         platformId && platformId !== "all"
@@ -24,11 +25,21 @@ const DynamicHeading = ({ genres, platforms }: Props) => {
             ? genres.find((g) => g.slug === genreSlug)
             : null;
 
+    let headingText = "";
+
+    if (searchQuery) {
+        headingText = `Search results for "${searchQuery}"`;
+        if (matchingGenre) headingText += ` in ${matchingGenre.name}`;
+        if (matchingPlatform) headingText += ` on ${matchingPlatform.name}`;
+    } else {
+        headingText = matchingGenre ? `${matchingGenre.name} Games` : "Games";
+        if (matchingPlatform) headingText += ` on ${matchingPlatform.name}`;
+    }
+
     return (
         <Suspense>
             <h1 className="text-4xl font-bold border-b-2 px-1 pb-1">
-                {matchingGenre ? `${matchingGenre.name} Games` : "Games"}
-                {matchingPlatform ? ` on ${matchingPlatform.name}` : ""}
+                {headingText}
             </h1>
         </Suspense>
     );

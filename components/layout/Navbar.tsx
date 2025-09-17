@@ -13,6 +13,7 @@ import {
 import { Menu, Search } from "lucide-react";
 import { ThemeToggle } from "../ui/ThemeToggle";
 import { usePathname } from "next/navigation";
+import SearchInput from "../SearchInput";
 
 export function Navbar() {
     const currentPath = usePathname();
@@ -62,11 +63,7 @@ export function Navbar() {
                     {currentPath === "/" ? null : (
                         // Search
                         <div className="relative">
-                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground w-4 h-4" />
-                            <Input
-                                placeholder="Search games…"
-                                className="pl-9 pr-4 py-2 rounded-full w-40 lg:w-48"
-                            />
+                            <SearchInput />
                         </div>
                     )}
                     <ThemeToggle />

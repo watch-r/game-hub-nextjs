@@ -84,7 +84,7 @@ export async function GET(req: NextRequest) {
 
         const data = await fetchFromRAWG(endpoint);
         return NextResponse.json(data);
-    } catch (err) {
+    } catch (error) {
         return NextResponse.json({ error: "Error fetching data" }, { status: 500 });
     }
 }
