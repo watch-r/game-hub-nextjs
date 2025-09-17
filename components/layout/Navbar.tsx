@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -63,7 +63,9 @@ export function Navbar() {
                     {currentPath === "/" ? null : (
                         // Search
                         <div className="relative">
-                            <SearchInput />
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <SearchInput />
+                            </Suspense>
                         </div>
                     )}
                     <ThemeToggle />
