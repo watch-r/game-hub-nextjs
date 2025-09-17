@@ -43,7 +43,7 @@ const GenreList = ({ genres, selectedGenre }: GenreListProps) => {
             platform: null,
             sortOrder: null,
             page: "1",
-            // optionally keep search if you want: search: searchParams.get("search")
+            search: null,
         });
     };
 

@@ -64,7 +64,7 @@ export function Navbar() {
                         // Search
                         <div className="relative">
                             <Suspense fallback={<div>Loading...</div>}>
-                                <SearchInput />
+                                <SearchInput isMobile={false} />
                             </Suspense>
                         </div>
                     )}
@@ -120,7 +120,7 @@ export function Navbar() {
                         </nav>
                         {/* Search */}
                         <div className="p-3 mt-6 flex flex-col gap-3">
-                            <Input placeholder="Search games…" />
+                            <SearchInput isMobile={true} />
                             <Button className="rounded-full text-sm sm:text-base">
                                 Sign In
                             </Button>

@@ -4,9 +4,10 @@ export async function GET(req: NextRequest) {
     try {
         const { searchParams } = new URL(req.url);
 
-        // Determine what type of data to fetch
-        const type = searchParams.get("type") || "games"; // games, genres, platforms, screenshots, stores, movies
-        const id = searchParams.get("id"); // optional for single item or sub-resources
+        const type = searchParams.get("type") || "games"; // games, genres, etc.
+        const id = searchParams.get("id"); // optional for single item
+        const releasedThisYear =
+            searchParams.get("releasedThisYear") === "true"; // new param
 
         let endpoint = "";
 
@@ -31,6 +32,7 @@ export async function GET(req: NextRequest) {
                 let query = `page_size=${
                     searchParams.get("page_size") || "10"
                 }`;
+
                 if (searchParams.get("page"))
                     query += `&page=${searchParams.get("page")}`;
                 if (searchParams.get("platform"))
@@ -41,6 +43,18 @@ export async function GET(req: NextRequest) {
                     query += `&ordering=${searchParams.get("order")}`;
                 if (searchParams.get("search"))
                     query += `&search=${searchParams.get("search")}`;
+
+                // Add dates param if releasedThisYear is true
+                if (releasedThisYear) {
+                    const year = new Date().getFullYear();
+                    const startDate = `${year}-01-01`;
+                    const today = new Date().toISOString().split("T")[0];
+                    query += `&dates=${startDate},${today}`;
+                    // If no ordering is passed, default to newest first
+                    if (!searchParams.get("order"))
+                        query += `&ordering=-released`;
+                }
+
                 endpoint = `/games?${query}`;
                 break;
             }
@@ -85,6 +99,9 @@ export async function GET(req: NextRequest) {
         const data = await fetchFromRAWG(endpoint);
         return NextResponse.json(data);
     } catch (error) {
-        return NextResponse.json({ error: "Error fetching data" }, { status: 500 });
+        return NextResponse.json(
+            { error: "Error fetching data" },
+            { status: 500 }
+        );
     }
 }

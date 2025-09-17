@@ -38,7 +38,7 @@ const DynamicHeading = ({ genres, platforms }: Props) => {
 
     return (
         <Suspense fallback={<div>Loading... </div>}>
-            <h1 className="text-4xl font-bold border-b-2 px-1 pb-1">
+            <h1 className="text-2xl font-bold border-b-2 px-1 pb-3">
                 {headingText}
             </h1>
         </Suspense>

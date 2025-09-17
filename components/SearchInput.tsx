@@ -3,11 +3,14 @@
 import { useRef } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-// import { MagnifyingGlassIcon } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { SearchCheck } from "lucide-react";
 
-const SearchInput = () => {
+interface SearchProps {
+    isMobile?: boolean;
+}
+
+const SearchInput = ({ isMobile = false }: SearchProps) => {
     const ref = useRef<HTMLInputElement>(null);
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -32,22 +35,24 @@ const SearchInput = () => {
                 e.preventDefault();
                 if (ref.current) handleSearch(ref.current.value);
             }}
-            className="flex items-center space-x-2"
+            className="flex items-center space-x-2 w-full"
         >
             {/* Input with icon */}
-            <div className="relative">
+            <div className="relative flex-1">
                 <Input
                     ref={ref}
                     placeholder="Search games…"
-                    className="pr-10 w-[300px]"
+                    className="pr-10 w-full sm:w-[250px] md:w-[300px]"
                 />
                 <SearchCheck className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
             </div>
 
-            {/* Submit button */}
-            <Button type="submit" variant="outline">
-                Search
-            </Button>
+            {/* Show button only if isMobile is true */}
+            {isMobile && (
+                <Button type="submit" variant="outline">
+                    Search
+                </Button>
+            )}
         </form>
     );
 };

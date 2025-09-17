@@ -22,7 +22,8 @@ const ResetButton = () => {
         params.delete("platform");
         params.delete("sortOrder");
         params.delete("genres");
-        params.delete("page"); // optional: reset pagination
+        params.delete("page");
+        params.delete("search");
 
         // Keep search if it exists
         // params.get("search") is already in params from clone
