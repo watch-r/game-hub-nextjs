@@ -7,6 +7,7 @@ import { Badge } from "./ui/badge";
 import CriticScore from "./CriticScore";
 import PlatformIconList from "./PlatformIconList";
 import { HelpCircle } from "lucide-react";
+import Link from "next/link";
 
 interface GameCArdProps {
     game: Game;
@@ -31,9 +32,11 @@ const GameCard = ({ game }: GameCArdProps) => {
                 <CriticScore score={game.metacritic} />
             </div>
             <CardContent className="text-center">
-                <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
-                    {game.name}
-                </h4>
+                <Link href={`/browse/${game.id}`}>
+                    <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+                        {game.name}
+                    </h4>
+                </Link>
             </CardContent>
             <CardFooter className="flex flex-col justify-between">
                 <div className="flex flex-row items-center gap-2 text-sm">
