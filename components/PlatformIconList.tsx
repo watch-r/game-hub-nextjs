@@ -1,7 +1,6 @@
 import { Platform } from "@/lib/Typedefinations";
 import {
     Monitor,
-    Gamepad2,
     Smartphone,
     Globe,
     Apple,

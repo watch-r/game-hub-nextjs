@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
-import { Game, ScreenShots } from "@/lib/Typedefinations";
+import { Developer, Game, Genre,ScreenShot, ScreenShots, Tag } from "@/lib/Typedefinations";
 import WhereToBuy from "@/components/WhereToBuy";
 
 interface GameDetailsProps {
@@ -63,7 +63,7 @@ export default async function GameDetailsPage({ params }: GameDetailsProps) {
             <section>
                 <h2 className="text-xl font-semibold mb-2">Media</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    {screenShots.results?.map((shot: any) => (
+                    {screenShots.results?.map((shot: ScreenShot) => (
                         <div key={shot.id} className="relative aspect-video">
                             <Image
                                 src={shot.image}
@@ -97,7 +97,7 @@ export default async function GameDetailsPage({ params }: GameDetailsProps) {
                     <CardContent className="p-4 space-y-2">
                         <h3 className="font-semibold text-lg">Genres</h3>
                         <div className="flex flex-wrap gap-2">
-                            {game.genres?.map((g: any) => (
+                            {game.genres?.map((g:Genre) => (
                                 <Badge key={g.id} variant="secondary">
                                     {g.name}
                                 </Badge>
@@ -110,7 +110,7 @@ export default async function GameDetailsPage({ params }: GameDetailsProps) {
                     <CardContent className="p-4 space-y-2">
                         <h3 className="font-semibold text-lg">Platforms</h3>
                         <div className="flex flex-wrap gap-2">
-                            {game.platforms?.map((p: any) => (
+                            {game.platforms?.map((p) => (
                                 <Badge key={p.platform.id}>
                                     {p.platform.name}
                                 </Badge>
@@ -126,7 +126,7 @@ export default async function GameDetailsPage({ params }: GameDetailsProps) {
                     <CardContent className="p-4 space-y-3">
                         <h3 className="font-semibold text-lg">Developers</h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                            {game.developers?.map((dev: any) => (
+                            {game.developers?.map((dev: Developer) => (
                                 <div
                                     key={dev.id}
                                     className="relative rounded-lg overflow-hidden shadow-md group "
@@ -159,7 +159,7 @@ export default async function GameDetailsPage({ params }: GameDetailsProps) {
                     <CardContent className="p-4 space-y-2">
                         <h3 className="font-semibold text-lg">Tags</h3>
                         <div className="flex flex-wrap gap-2">
-                            {game.tags?.map((tag: any) => (
+                            {game.tags?.map((tag: Tag) => (
                                 <Badge key={tag.id} variant="outline">
                                     {tag.name}
                                 </Badge>

@@ -100,7 +100,7 @@ export async function GET(req: NextRequest) {
         return NextResponse.json(data);
     } catch (error) {
         return NextResponse.json(
-            { error: "Error fetching data" },
+            { error: error },
             { status: 500 }
         );
     }

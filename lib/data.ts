@@ -1,7 +1,3 @@
-// lib/data.ts
-
-import { Game } from "./Typedefinations";
-
 export async function fetchGamesWithParameters(
     pageSize: string,
     page: string,
@@ -51,8 +47,7 @@ export async function fetchTopRatedGames(pageSize: string, page: string) {
     return res.json();
 }
 export async function fetchNewReleasesThisYear(pageSize: number, page: number) {
-
-    const fetchSize = pageSize; 
+    const fetchSize = pageSize;
     const res = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/games?type=games&releasedThisYear=true&page_size=${fetchSize}&page=${page}`,
         { cache: "no-store" }
@@ -67,7 +62,7 @@ export async function fetchNewReleasesThisYear(pageSize: number, page: number) {
     const data = await res.json();
 
     return {
-        count: data.count, 
+        count: data.count,
         results: data.results,
     };
 }

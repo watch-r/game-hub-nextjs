@@ -4,7 +4,24 @@ export type Game = {
     name: string;
     background_image: string;
     parent_platforms: { platform: Platform }[];
-    platforms: { platform: Platform }[];
+    platforms: {
+        platform: {
+            id: number;
+            name: string;
+            slug: string;
+            image: string | null;
+            year_end: number | null;
+            year_start: number | null;
+            games_count: number;
+            image_background: string;
+        };
+        released_at: string | null;
+        requirements: {
+            minimum?: string;
+            recommended?: string;
+            [key: string]: unknown;
+        };
+    }[];
     released: string;
     rating: number;
     ratings: { ratings: Ratings }[];
@@ -15,9 +32,9 @@ export type Game = {
     saturated_color: string;
     dominant_colors: string;
     description: string;
-    genres: { genre: Genre }[];
-    developers: { developer: Developer }[];
-    tags: { tag: Tag }[];
+    genres: Genre[];
+    developers: Developer[];
+    tags:Tag [];
 };
 export type Gamep = {
     id: number;
@@ -67,7 +84,7 @@ export type GameById = {
     parent_platforms: { platform: Platform }[];
     playtime: string;
 };
-export type Platformo = {
+export type Platforms = {
     platform: { id: string; name: string; slug: string };
     released_at?: string;
     requirements?: string;
@@ -77,9 +94,10 @@ export type ScreenShots = {
     count: number;
     results: { id: number; image: string }[];
 };
-// export type ScreenShot = {
-//     image: string;
-// };
+export type ScreenShot = {
+    id: number;
+    image: string;
+};
 export type GameStore = {
     count: number;
     results: Store[];

@@ -3,14 +3,13 @@
 import { Suspense, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
     Sheet,
     SheetContent,
     SheetHeader,
     SheetTrigger,
 } from "@/components/ui/sheet";
-import { Menu, Search } from "lucide-react";
+import { Menu } from "lucide-react";
 import { ThemeToggle } from "../ui/ThemeToggle";
 import { usePathname } from "next/navigation";
 import SearchInput from "../SearchInput";

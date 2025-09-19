@@ -9,7 +9,7 @@ import {
     CarouselContent,
     CarouselItem,
 } from "@/components/ui/carousel";
-import { Game, Gamep } from "@/lib/Typedefinations";
+import { Game} from "@/lib/Typedefinations";
 import Autoplay from "embla-carousel-autoplay";
 import GameCard from "@/components/GameCard";
 import { HomeGameSkeleton } from "@/components/skeletons/HomeGameSkeleton";

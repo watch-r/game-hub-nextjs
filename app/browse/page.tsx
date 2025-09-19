@@ -1,4 +1,3 @@
-import { Genre } from "@/lib/Typedefinations";
 import GameGrid from "@/components/GameGrid";
 import GenreList from "@/components/GenreList";
 import PlatformGameFilterList from "@/components/PlatformFilterList";

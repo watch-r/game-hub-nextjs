@@ -2,7 +2,6 @@ import { fetchGamesWithParameters } from "@/lib/data";
 import React from "react";
 import GameCard from "./GameCard";
 import { Game } from "@/lib/Typedefinations";
-import { Pagination } from "./ui/pagination";
 import GamePagination from "./Pagination";
 
 type MyPageProps = {

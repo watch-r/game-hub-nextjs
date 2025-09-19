@@ -13,11 +13,11 @@ const NewReleasesPage = async ({
     const pageSize = 9;
     const page = await parseInt(searchParams.page || "1", 10);
 
-    const { count, results } = await fetchNewReleasesThisYear(pageSize, page);
+    const { results } = await fetchNewReleasesThisYear(pageSize, page);
 
     return (
         <div className="p-6 mx-auto w-full max-w-6xl">
-            <h1 className="text-3xl font-bold mb-6 text-center" >
+            <h1 className="text-3xl font-bold mb-6 text-center">
                 🎮 New Releases ({new Date().getFullYear()})
             </h1>
 
