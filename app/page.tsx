@@ -9,10 +9,12 @@ import {
     CarouselContent,
     CarouselItem,
 } from "@/components/ui/carousel";
-import { Game} from "@/lib/Typedefinations";
+import { Game } from "@/lib/Typedefinations";
 import Autoplay from "embla-carousel-autoplay";
 import GameCard from "@/components/GameCard";
 import { HomeGameSkeleton } from "@/components/skeletons/HomeGameSkeleton";
+import SearchInput from "@/components/SearchInput";
+import Link from "next/link";
 
 export default function Home() {
     const [games, setGames] = useState([]);
@@ -45,15 +47,12 @@ export default function Home() {
                     {/* Search + Button */}
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-md mx-auto">
                         <div className="relative w-full">
-                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
-                            <Input
-                                placeholder="Search Game…"
-                                aria-label="Search games"
-                                className="pl-12 pr-4 py-3 rounded-full w-full text-base sm:text-lg"
-                            />
+                            <Suspense fallback={<div>loading...</div>}>
+                                <SearchInput />
+                            </Suspense>
                         </div>
-                        <Button className="rounded-full px-6 py-3 text-base sm:text-lg shadow-md hover:scale-105 transition">
-                            BROWSE ALL
+                        <Button className="rounded-full px-6 py-3 text-base sm:text-lg shadow-md hover:scale-105 transition" >
+                            <Link href="/browse">BROWSE ALL</Link>
                         </Button>
                     </div>
                 </div>
