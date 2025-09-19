@@ -1,14 +1,15 @@
-// app/games/[id]/page.tsx
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
+import { Game, ScreenShots } from "@/lib/Typedefinations";
+import WhereToBuy from "@/components/WhereToBuy";
 
 interface GameDetailsProps {
     params: { id: string };
 }
 
-async function getGameDetails(id: string) {
+async function getGameDetails(id: number) {
     const res = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/games?type=gameById&id=${id}`,
         { cache: "no-store" }
@@ -18,7 +19,13 @@ async function getGameDetails(id: string) {
 }
 
 export default async function GameDetailsPage({ params }: GameDetailsProps) {
-    const game = await getGameDetails(params.id);
+    const { id } = await params;
+    const game: Game = await getGameDetails(parseInt(id));
+
+    const screenShotsData = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/games?type=screenshots&id=${id}`
+    );
+    const screenShots: ScreenShots = await screenShotsData.json();
 
     return (
         <div className="mx-auto max-w-6xl p-6 space-y-6">
@@ -56,7 +63,7 @@ export default async function GameDetailsPage({ params }: GameDetailsProps) {
             <section>
                 <h2 className="text-xl font-semibold mb-2">Media</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    {game.short_screenshots?.map((shot: any) => (
+                    {screenShots.results?.map((shot: any) => (
                         <div key={shot.id} className="relative aspect-video">
                             <Image
                                 src={shot.image}
@@ -113,38 +120,51 @@ export default async function GameDetailsPage({ params }: GameDetailsProps) {
                 </Card>
             </section>
 
-            {/* Developer + Stores */}
-            <section className="grid md:grid-cols-2 gap-6">
+            {/* Developer + Stores + Tags */}
+            <section className="grid md:grid-cols-3 gap-6">
                 <Card>
-                    <CardContent className="p-4">
+                    <CardContent className="p-4 space-y-3">
                         <h3 className="font-semibold text-lg">Developers</h3>
-                        <ul className="list-disc ml-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                             {game.developers?.map((dev: any) => (
-                                <li key={dev.id}>{dev.name}</li>
+                                <div
+                                    key={dev.id}
+                                    className="relative rounded-lg overflow-hidden shadow-md group "
+                                >
+                                    {/* Background image */}
+                                    <div className="absolute inset-0">
+                                        <Image
+                                            src={game.background_image}
+                                            alt={dev.name}
+                                            fill
+                                            className="object-cover opacity-30 group-hover:opacity-50 transition"
+                                        />
+                                    </div>
+
+                                    {/* Overlay */}
+                                    <div className="relative z-10 flex items-center justify-center p-4 bg-black/40 group-hover:bg-black/60 transition">
+                                        <span className="text-white text-sm font-medium text-center">
+                                            {dev.name}
+                                        </span>
+                                    </div>
+                                </div>
                             ))}
-                        </ul>
+                        </div>
                     </CardContent>
                 </Card>
 
+                <WhereToBuy id={id} />
+
                 <Card>
-                    <CardContent className="p-4">
-                        <h3 className="font-semibold text-lg">
-                            Available Stores
-                        </h3>
-                        <ul className="list-disc ml-4">
-                            {game.stores?.map((store: any) => (
-                                <li key={store.id}>
-                                    <a
-                                        href={`https://${store.store.domain}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-blue-500 hover:underline"
-                                    >
-                                        {store.store.name}
-                                    </a>
-                                </li>
+                    <CardContent className="p-4 space-y-2">
+                        <h3 className="font-semibold text-lg">Tags</h3>
+                        <div className="flex flex-wrap gap-2">
+                            {game.tags?.map((tag: any) => (
+                                <Badge key={tag.id} variant="outline">
+                                    {tag.name}
+                                </Badge>
                             ))}
-                        </ul>
+                        </div>
                     </CardContent>
                 </Card>
             </section>

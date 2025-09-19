@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -12,6 +12,7 @@ import {
 import { Game, Gamep } from "@/lib/Typedefinations";
 import Autoplay from "embla-carousel-autoplay";
 import GameCard from "@/components/GameCard";
+import { HomeGameSkeleton } from "@/components/skeletons/HomeGameSkeleton";
 
 export default function Home() {
     const [games, setGames] = useState([]);
@@ -59,47 +60,50 @@ export default function Home() {
             </section>
 
             {/* Genre Tabs mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 */}
-            <section className="py-8 text-center h-auto">
-                <Tabs defaultValue="action" onValueChange={setGenre}>
-                    {/* Center the tab list */}
-                    <div className="flex justify-center">
-                        <TabsList className="flex justify-center gap-2">
-                            <TabsTrigger value="action">Action</TabsTrigger>
-                            <TabsTrigger value="adventure">
-                                Adventure
-                            </TabsTrigger>
-                            <TabsTrigger value="role-playing-games-rpg">
-                                RPG
-                            </TabsTrigger>
-                            <TabsTrigger value="indie">Indie</TabsTrigger>
-                            <TabsTrigger value="shooter">Shooter</TabsTrigger>
-                        </TabsList>
-                    </div>
-                </Tabs>
-            </section>
-
-            {/* Top Games */}
-            <Carousel
-                opts={{
-                    align: "start",
-                    loop: true,
-                }}
-                plugins={[
-                    Autoplay({ delay: 2000 }), // 2 seconds
-                ]}
-                className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8"
-            >
-                <CarouselContent>
-                    {games.map((game: Game) => (
-                        <CarouselItem
-                            key={game.id}
-                            className="basis-1/1 md:basis-1/2 lg:basis-1/3"
-                        >
-                            <GameCard game={game} />
-                        </CarouselItem>
-                    ))}
-                </CarouselContent>
-            </Carousel>
+            <Suspense fallback={<HomeGameSkeleton />}>
+                <section className="py-8 text-center h-auto">
+                    <Tabs defaultValue="action" onValueChange={setGenre}>
+                        {/* Center the tab list */}
+                        <div className="flex justify-center">
+                            <TabsList className="flex justify-center gap-2">
+                                <TabsTrigger value="action">Action</TabsTrigger>
+                                <TabsTrigger value="adventure">
+                                    Adventure
+                                </TabsTrigger>
+                                <TabsTrigger value="role-playing-games-rpg">
+                                    RPG
+                                </TabsTrigger>
+                                <TabsTrigger value="indie">Indie</TabsTrigger>
+                                <TabsTrigger value="shooter">
+                                    Shooter
+                                </TabsTrigger>
+                            </TabsList>
+                        </div>
+                    </Tabs>
+                </section>
+                {/* Top Games */}
+                <Carousel
+                    opts={{
+                        align: "start",
+                        loop: true,
+                    }}
+                    plugins={[
+                        Autoplay({ delay: 2000 }), // 2 seconds
+                    ]}
+                    className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8"
+                >
+                    <CarouselContent>
+                        {games.map((game: Game) => (
+                            <CarouselItem
+                                key={game.id}
+                                className="basis-1/1 md:basis-1/2 lg:basis-1/3"
+                            >
+                                <GameCard game={game} />
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                </Carousel>
+            </Suspense>
         </div>
     );
 }

@@ -1,4 +1,5 @@
 export type Game = {
+    rating_top: string;
     id: number;
     name: string;
     background_image: string;
@@ -13,6 +14,10 @@ export type Game = {
     updated: string;
     saturated_color: string;
     dominant_colors: string;
+    description: string;
+    genres: { genre: Genre }[];
+    developers: { developer: Developer }[];
+    tags: { tag: Tag }[];
 };
 export type Gamep = {
     id: number;
@@ -20,6 +25,13 @@ export type Gamep = {
     background_image: string;
     released: string;
     rating: number;
+};
+export type Developer = {
+    id: number;
+    name: string;
+    slug: string;
+    games_count: number;
+    image_background: string;
 };
 
 export type Platform = {
@@ -90,4 +102,12 @@ export type Videos = {
         "480": string;
         max: string;
     };
+};
+export type Tag = {
+    id: number;
+    name: string;
+    slug: string;
+    language: string;
+    games_count: number;
+    image_background: string;
 };
