@@ -1,4 +1,4 @@
-import { Badge } from "@radix-ui/themes";
+import { Badge } from "./ui/badge";
 
 const CriticScore = ({ score }: { score: number }) => {
     const color =
@@ -12,7 +12,7 @@ const CriticScore = ({ score }: { score: number }) => {
             ? "red"
             : "cyan";
     return (
-        <Badge variant='surface' color={color} size={"1"}>
+        <Badge variant="outline" color={color}>
             {score || "N/S"}
         </Badge>
     );

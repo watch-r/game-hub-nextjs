@@ -1,46 +1,58 @@
 "use client";
-import React, { useRef } from "react";
-import { Input } from "./ui/input";
-import { SearchIcon } from "lucide-react";
-import { TextField } from "@radix-ui/themes";
-import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
-import { useRouter, useSearchParams } from "next/navigation";
 
-const SearchInput = () => {
+import { useRef } from "react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useRouter, useSearchParams } from "next/navigation";
+import { SearchCheck } from "lucide-react";
+
+interface SearchProps {
+    isMobile?: boolean;
+}
+
+const SearchInput = ({ isMobile = false }: SearchProps) => {
     const ref = useRef<HTMLInputElement>(null);
     const router = useRouter();
     const searchParams = useSearchParams();
 
-    const handleSearch = (searchQuery: any) => {
-        const params = new URLSearchParams();
-        if (searchQuery) params.append("search", searchQuery);
-        if (searchParams.get("genres"))
-            params.append("genres", searchParams.get("genres")!);
-        if (searchParams.get("sortOrder"))
-            params.append("sortOrder", searchParams.get("sortOrder")!);
-        if (searchParams.get("platform"))
-            params.append("platform", searchParams.get("platform")!);
-        const query = params.size ? "?" + params.toString() : "";
-        router.push("/games" + query);
+    // Updates the search param while keeping other filters intact
+    const handleSearch = (searchQuery: string) => {
+        const params = new URLSearchParams(searchParams.toString());
+
+        if (searchQuery) {
+            params.set("search", searchQuery);
+        } else {
+            params.delete("search");
+        }
+
+        const query = params.toString() ? `?${params.toString()}` : "";
+        router.push("/browse" + query);
     };
+
     return (
         <form
-            onSubmit={(event) => {
-                event.preventDefault();
-                if (ref.current) handleSearch(ref.current?.value);
+            onSubmit={(e) => {
+                e.preventDefault();
+                if (ref.current) handleSearch(ref.current.value);
             }}
+            className="flex items-center space-x-2 w-full"
         >
-            <TextField.Root>
-                <TextField.Slot>
-                    <MagnifyingGlassIcon height='13' width='13' />
-                </TextField.Slot>
-                <TextField.Input
+            {/* Input with icon */}
+            <div className="relative flex-1">
+                <Input
                     ref={ref}
-                    radius='full'
-                    placeholder='Search Game…'
-                    style={{ maxWidth: 400 }}
+                    placeholder="Search games…"
+                    className="pr-10 w-full sm:w-[250px] md:w-[300px]"
                 />
-            </TextField.Root>
+                <SearchCheck className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+            </div>
+
+            {/* Show button only if isMobile is true */}
+            {isMobile && (
+                <Button type="submit" variant="outline">
+                    Search
+                </Button>
+            )}
         </form>
     );
 };
