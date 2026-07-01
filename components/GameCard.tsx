@@ -14,38 +14,46 @@ interface GameCArdProps {
 }
 const GameCard = ({ game }: GameCArdProps) => {
     return (
-        <Card className="overflow-hidden pt-0 mt-0">
-            <Image
-                width={1000}
-                height={500}
-                src={
-                    game.background_image
-                        ? getCroppedImageUrl(game.background_image)
-                        : "/stock-image.png"
-                }
-                alt={game.name}
-                className="object-cover "
-            />
+        <Card className="group overflow-hidden pt-0 mt-0 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl border-muted-foreground/20">
+            <div className="relative overflow-hidden">
+                <Image
+                    width={1000}
+                    height={500}
+                    src={
+                        game.background_image
+                            ? getCroppedImageUrl(game.background_image)
+                            : "/stock-image.png"
+                    }
+                    alt={game.name}
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute top-2 right-2">
+                    <Badge className="bg-black/60 backdrop-blur-md text-white border-none">
+                        {game.rating}
+                    </Badge>
+                </div>
+            </div>
 
-            <div className="flex justify-center space-x-1 pl-2 pr-2">
-                <h1>Critic Score: </h1>
+            <div className="flex justify-center items-center gap-2 py-3">
+                <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                    Critic Score
+                </span>
                 <CriticScore score={game.metacritic} />
             </div>
-            <CardContent className="text-center">
-                <Link href={`/browse/${game.id}`}>
-                    <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+            <CardContent className="text-center py-4">
+                <Link href={`/browse/${game.id}`} className="group/title">
+                    <h4 className="text-xl font-bold tracking-tight transition-colors duration-200 group-hover/title:text-primary">
                         {game.name}
                     </h4>
                 </Link>
             </CardContent>
-            <CardFooter className="flex flex-col justify-between">
-                <div className="flex flex-row items-center gap-2 text-sm">
-                    <Badge variant="destructive">{game.rating}</Badge>
-                    <span className="text-xs text-muted-foreground">
-                        {game.released}
+            <CardFooter className="flex flex-col gap-3 pb-6">
+                <div className="flex flex-row items-center justify-center gap-2 text-sm">
+                    <span className="text-xs text-muted-foreground font-medium">
+                        Released: {game.released}
                     </span>
                 </div>
-                <div className="flex flex-row items-center gap-2">
+                <div className="flex flex-row items-center justify-center gap-2">
                     {game.parent_platforms ? (
                         <>
                             <PlatformIconList
@@ -54,13 +62,13 @@ const GameCard = ({ game }: GameCArdProps) => {
                                     .slice(0, 3)} // 👈 show only first 3
                             />
                             {game.parent_platforms.length > 3 && (
-                                <span className="text-xs font-semibold text-gray-500">
+                                <span className="text-xs font-semibold text-muted-foreground">
                                     +{game.parent_platforms.length - 3}
                                 </span>
                             )}
                         </>
                     ) : (
-                        <HelpCircle color="grey" />
+                        <HelpCircle className="w-4 h-4 text-muted-foreground" />
                     )}
                 </div>
             </CardFooter>

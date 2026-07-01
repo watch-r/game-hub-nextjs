@@ -136,7 +136,10 @@ export function Footer() {
             </div>
 
             {/* Bottom Bar */}
-            <div className="mt-10 border-t pt-6 text-center text-sm text-muted-foreground">
+            <div
+                className="mt-10 border-t pt-6 text-center text-sm text-muted-foreground"
+                suppressHydrationWarning
+            >
                 © {new Date().getFullYear()} MonStarZero Studio. All rights
                 reserved.
             </div>

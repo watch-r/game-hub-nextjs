@@ -2,30 +2,30 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
-import { Developer, Game, Genre,ScreenShot, ScreenShots, Tag } from "@/lib/Typedefinations";
+import {
+    Developer,
+    Game,
+    Genre,
+    ScreenShot,
+    ScreenShots,
+    Tag,
+} from "@/lib/Typedefinations";
 import WhereToBuy from "@/components/WhereToBuy";
+import { fetchGameById, fetchGameScreenshots } from "@/lib/data";
 
 interface GameDetailsProps {
     params: { id: string };
 }
 
-async function getGameDetails(id: number) {
-    const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/games?type=gameById&id=${id}`,
-        { cache: "no-store" }
-    );
-    if (!res.ok) throw new Error("Failed to fetch game details");
-    return res.json();
+async function getGameDetails(id: string) {
+    return fetchGameById(id);
 }
 
 export default async function GameDetailsPage({ params }: GameDetailsProps) {
     const { id } = await params;
-    const game: Game = await getGameDetails(parseInt(id));
+    const game: Game = await getGameDetails(id);
 
-    const screenShotsData = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/games?type=screenshots&id=${id}`
-    );
-    const screenShots: ScreenShots = await screenShotsData.json();
+    const screenShots: ScreenShots = await fetchGameScreenshots(id);
 
     return (
         <div className="mx-auto max-w-6xl p-6 space-y-6">
@@ -97,7 +97,7 @@ export default async function GameDetailsPage({ params }: GameDetailsProps) {
                     <CardContent className="p-4 space-y-2">
                         <h3 className="font-semibold text-lg">Genres</h3>
                         <div className="flex flex-wrap gap-2">
-                            {game.genres?.map((g:Genre) => (
+                            {game.genres?.map((g: Genre) => (
                                 <Badge key={g.id} variant="secondary">
                                     {g.name}
                                 </Badge>

@@ -17,12 +17,15 @@ const NewReleasesPage = async ({
 
     return (
         <div className="p-6 mx-auto w-full max-w-6xl">
-            <h1 className="text-3xl font-bold mb-6 text-center">
+            <h1
+                className="text-3xl font-bold mb-6 text-center"
+                suppressHydrationWarning
+            >
                 🎮 New Releases ({new Date().getFullYear()})
             </h1>
 
             {results.length === 0 ? (
-                <p className="text-gray-500">
+                <p className="text-gray-500" suppressHydrationWarning>
                     No games released yet in {new Date().getFullYear()}.
                 </p>
             ) : (

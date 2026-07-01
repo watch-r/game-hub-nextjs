@@ -4,6 +4,7 @@ import PlatformGameFilterList from "@/components/PlatformFilterList";
 import SortSelector from "@/components/SortSelector";
 import DynamicHeading from "@/components/DynamicHeading";
 import ResetButton from "@/components/ResetButton";
+import { fetchGenres, fetchPlatforms } from "@/lib/data";
 
 interface SearchProps {
     searchParams: {
@@ -18,15 +19,8 @@ interface SearchProps {
 export default async function GameBrowsePage({ searchParams }: SearchProps) {
     const { platform, genre, page, sortOrder, search } = await searchParams;
 
-    const resGenre = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/games?type=genres`
-    );
-    const genreResults = await resGenre.json();
-
-    const resPlatforms = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/games?type=platforms`
-    );
-    const platformResults = await resPlatforms.json();
+    const genreResults = await fetchGenres();
+    const platformResults = await fetchPlatforms();
 
     return (
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 flex flex-row">

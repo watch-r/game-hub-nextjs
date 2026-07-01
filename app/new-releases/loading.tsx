@@ -4,7 +4,10 @@ import React from "react";
 const LoadingPageOfNewRealeases = () => {
     return (
         <div className="p-6 mx-auto w-full max-w-6xl">
-            <h1 className="text-3xl font-bold mb-6 text-center">
+            <h1
+                className="text-3xl font-bold mb-6 text-center"
+                suppressHydrationWarning
+            >
                 🎮 New Releases ({new Date().getFullYear()})
             </h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
