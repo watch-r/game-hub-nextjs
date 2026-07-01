@@ -46,6 +46,7 @@ const GamePagination = ({ itemCount, pageSize, currentpage }: MyPageProps) => {
                         variant={"ghost"}
                         onClick={() => changePage(currentpage - 1)}
                         disabled={currentpage === 1}
+                        className="cursor-pointer"
                     >
                         <ArrowLeft />
                         Previous
@@ -63,6 +64,7 @@ const GamePagination = ({ itemCount, pageSize, currentpage }: MyPageProps) => {
                         <PaginationItem>
                             <PaginationLink
                                 onClick={() => changePage(currentpage + 1)}
+                                className="cursor-pointer"
                             >
                                 {currentpage + 1}
                             </PaginationLink>
@@ -75,6 +77,7 @@ const GamePagination = ({ itemCount, pageSize, currentpage }: MyPageProps) => {
                         <PaginationItem>
                             <PaginationLink
                                 onClick={() => changePage(pageCount)}
+                                className="cursor-pointer"
                             >
                                 {pageCount}
                             </PaginationLink>
@@ -88,6 +91,7 @@ const GamePagination = ({ itemCount, pageSize, currentpage }: MyPageProps) => {
                         variant={"ghost"}
                         onClick={() => changePage(currentpage + 1)}
                         disabled={currentpage === pageCount}
+                        className="cursor-pointer"
                     >
                         Next
                         <ArrowRight />

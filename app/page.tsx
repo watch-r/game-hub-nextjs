@@ -21,7 +21,7 @@ export default function Home() {
 
     useEffect(() => {
         setIsLoading(true);
-        fetch(`/api/games?type=games&page_size=10&genre=${genre}`)
+        fetch(`/api/home-games?genre=${genre}`)
             .then((res) => res.json())
             .then((data) => {
                 setGames(data.results || []);
@@ -32,21 +32,24 @@ export default function Home() {
     return (
         <div className="min-h-screen bg-background text-foreground mb-10">
             {/* Hero Section */}
-            <section className="relative py-16 md:py-24 lg:py-32 text-center h-auto">
+            <section className="relative py-20 md:py-32 lg:py-40 text-center h-auto overflow-hidden">
                 {/* Background Image with Gradient Overlay */}
                 <div
-                    className="absolute inset-0 bg-cover bg-top bg-no-repeat"
+                    className="absolute inset-0 bg-cover bg-top bg-no-repeat scale-105 animate-slow-zoom"
                     style={{
                         backgroundImage: `url('/hero.png')`,
                     }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/70" />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-background" />
 
                 {/* Content */}
                 <div className="relative z-10 max-w-4xl mx-auto px-4">
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 animate-fadeIn tracking-tight leading-tight">
+                    <h1 className="text-4xl md:text-6xl lg:text-8xl font-black text-white mb-8 animate-fadeIn tracking-tighter leading-tight drop-shadow-2xl">
                         Discover Your Next{" "}
-                        <span className="text-primary">Favorite Game</span>
+                        <span className="text-primary relative">
+                            Favorite Game
+                            <span className="absolute -bottom-2 left-0 w-full h-1 bg-primary/30 blur-sm rounded-full"></span>
+                        </span>
                     </h1>
 
                     {/* Search + Button */}
@@ -59,9 +62,9 @@ export default function Home() {
                             >
                                 <SearchInput />
                             </Suspense>
-                            <div className="absolute -inset-1 bg-gradient-to-r from-primary to-blue-600 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                            <div className="absolute -inset-1 bg-gradient-to-r from-primary via-blue-500 to-purple-600 rounded-full blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-300"></div>
                         </div>
-                        <Button className="rounded-full px-8 py-6 text-lg font-bold shadow-xl hover:scale-105 transition-all duration-300 bg-primary text-primary-foreground hover:bg-primary/90">
+                        <Button className="rounded-full px-8 py-6 text-lg font-bold shadow-2xl hover:scale-105 transition-all duration-300 bg-primary text-primary-foreground hover:bg-primary/90 border-white/20 backdrop-blur-sm">
                             <Link
                                 href="/browse"
                                 className="flex items-center gap-2"
@@ -75,45 +78,48 @@ export default function Home() {
 
             {/* Genre Tabs */}
             <Suspense fallback={<HomeGameSkeleton />}>
-                <section className="py-12 text-center h-auto">
-                    <div className="flex flex-col items-center gap-6">
-                        <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
-                            Explore by Genre
-                        </h2>
+                <section className="py-16 text-center h-auto">
+                    <div className="flex flex-col items-center gap-8">
+                        <div className="space-y-2">
+                            <h2 className="text-3xl md:text-4xl font-black tracking-tight">
+                                Explore by Genre
+                            </h2>
+                            <div className="h-1 w-20 bg-primary mx-auto rounded-full opacity-50"></div>
+                        </div>
                         <Tabs
                             defaultValue="action"
                             onValueChange={setGenre}
                             className="w-full max-w-4xl"
                         >
                             <div className="flex justify-center">
-                                <TabsList className="flex justify-center gap-2 p-1 bg-muted/50 backdrop-blur-sm rounded-full">
+                                <TabsList className="flex justify-center gap-2 p-1.5 bg-white/10 dark:bg-white/5 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-full shadow-2xl">
                                     <TabsTrigger
                                         value="action"
-                                        className="rounded-full px-4 py-2"
+                                        className="rounded-full px-6 py-2 transition-all duration-300"
                                     >
                                         Action
                                     </TabsTrigger>
                                     <TabsTrigger
                                         value="adventure"
-                                        className="rounded-full px-4 py-2"
+                                        className="rounded-full px-6 py-2 transition-all duration-300"
                                     >
                                         Adventure
                                     </TabsTrigger>
                                     <TabsTrigger
                                         value="role-playing-games-rpg"
-                                        className="rounded-full px-4 py-2"
+                                        className="rounded-full px-6 py-2 transition-all duration-300"
                                     >
                                         RPG
                                     </TabsTrigger>
                                     <TabsTrigger
                                         value="indie"
-                                        className="rounded-full px-4 py-2"
+                                        className="rounded-full px-6 py-2 transition-all duration-300"
                                     >
                                         Indie
                                     </TabsTrigger>
                                     <TabsTrigger
                                         value="shooter"
-                                        className="rounded-full px-4 py-2"
+                                        className="rounded-full px-6 py-2 transition-all duration-300"
                                     >
                                         Shooter
                                     </TabsTrigger>
